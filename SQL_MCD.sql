@@ -4,15 +4,15 @@
 
 
 #------------------------------------------------------------
-# Table: materiel_consommable
+# Table: mat_conso
 #------------------------------------------------------------
 
-CREATE TABLE materiel_consommable(
-        id_materiel_consommable int (11) Auto_increment  NOT NULL ,
-        nom                     Varchar (25) ,
-        code_barres             Varchar (25) ,
-        id_site                 Int NOT NULL ,
-        PRIMARY KEY (id_materiel_consommable )
+CREATE TABLE mat_conso(
+        id_mat_conso int (11) Auto_increment  NOT NULL ,
+        nom          Varchar (25) ,
+        code_barres  Varchar (25) ,
+        id_site      Int NOT NULL ,
+        PRIMARY KEY (id_mat_conso )
 )ENGINE=InnoDB;
 
 
@@ -45,35 +45,35 @@ CREATE TABLE projet(
 
 
 #------------------------------------------------------------
-# Table: materiel_non_consommable
+# Table: mat_non_conso
 #------------------------------------------------------------
 
-CREATE TABLE materiel_non_consommable(
-        id_materiel_non_consommable int (11) Auto_increment  NOT NULL ,
-        nom                         Varchar (25) ,
-        etat                        Enum ("disponible","indisponible","en_utilisation") ,
-        id_salle                    Int NOT NULL ,
-        PRIMARY KEY (id_materiel_non_consommable )
+CREATE TABLE mat_non_conso(
+        id_mat_non_conso int (11) Auto_increment  NOT NULL ,
+        nom              Varchar (25) ,
+        etat             Enum ("disponible","indisponible","en_utilisation") ,
+        id_salle         Int NOT NULL ,
+        PRIMARY KEY (id_mat_non_conso )
 )ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
-# Table: reservation_matériel_non_consommable
+# Table: reservation_mat_non_conso
 #------------------------------------------------------------
 
-CREATE TABLE reservation_materiel_non_consommable(
-        id_reservation_materiel_non_consommable int (11) Auto_increment  NOT NULL ,
-        etat_demande                            Enum ("en_cours","validee","refusee") NOT NULL ,
-        date_debut_utilisation                  Date NOT NULL ,
-        date_fin_utilisation                    Date NOT NULL ,
-        date_reservation                        Date ,
-        date_decision                           Date ,
-        quantite                                Int NOT NULL ,
-        id_personnel                            Int ,
-        id_materiel_non_consommable             Int NOT NULL ,
-        id_personnel_1                          Int ,
-        id_projet                               Int NOT NULL ,
-        PRIMARY KEY (id_reservation_materiel_non_consommable )
+CREATE TABLE reservation_mat_non_conso(
+        id_reservation_mat_non_conso int (11) Auto_increment  NOT NULL ,
+        etat_demande                 Enum ("en_cours","validee","refusee") NOT NULL ,
+        date_debut_utilisation       Date NOT NULL ,
+        date_fin_utilisation         Date NOT NULL ,
+        date_reservation             Date ,
+        date_decision                Date ,
+        quantite                     Int NOT NULL ,
+        id_personnel                 Int ,
+        id_mat_non_conso             Int NOT NULL ,
+        id_personnel_1               Int ,
+        id_projet                    Int NOT NULL ,
+        PRIMARY KEY (id_reservation_mat_non_conso )
 )ENGINE=InnoDB;
 
 
@@ -114,21 +114,21 @@ CREATE TABLE personnel(
 
 
 #------------------------------------------------------------
-# Table: demande_materiel_consommable
+# Table: demande_mat_conso
 #------------------------------------------------------------
 
-CREATE TABLE demande_materiel_consommable(
-        id_demande_materiel_consommable int (11) Auto_increment  NOT NULL ,
-        etat_demande                    Enum ("en_cours","validee","refusee") NOT NULL ,
-        date_utilisation                Date NOT NULL ,
-        date_demande                    Date NOT NULL ,
-        date_decision                   Date ,
-        quantite                        Int NOT NULL ,
-        id_personnel                    Int ,
-        id_personnel_1                  Int ,
-        id_materiel_consommable         Int NOT NULL ,
-        id_projet                       Int NOT NULL ,
-        PRIMARY KEY (id_demande_materiel_consommable )
+CREATE TABLE demande_mat_conso(
+        id_demande_mat_conso int (11) Auto_increment  NOT NULL ,
+        etat_demande         Enum ("en_cours","validee","refusee") NOT NULL ,
+        date_utilisation     Date NOT NULL ,
+        date_demande         Date NOT NULL ,
+        date_decision        Date ,
+        quantite             Int NOT NULL ,
+        id_personnel         Int ,
+        id_personnel_1       Int ,
+        id_mat_conso         Int NOT NULL ,
+        id_projet            Int NOT NULL ,
+        PRIMARY KEY (id_demande_mat_conso )
 )ENGINE=InnoDB;
 
 
@@ -191,9 +191,9 @@ CREATE TABLE appartenir(
 #------------------------------------------------------------
 
 CREATE TABLE gerer(
-        id_personnel                Int NOT NULL ,
-        id_materiel_non_consommable Int NOT NULL ,
-        PRIMARY KEY (id_personnel ,id_materiel_non_consommable )
+        id_personnel     Int NOT NULL ,
+        id_mat_non_conso Int NOT NULL ,
+        PRIMARY KEY (id_personnel ,id_mat_non_conso )
 )ENGINE=InnoDB;
 
 
@@ -202,21 +202,21 @@ CREATE TABLE gerer(
 #------------------------------------------------------------
 
 CREATE TABLE manager(
-        id_personnel            Int NOT NULL ,
-        id_materiel_consommable Int NOT NULL ,
-        PRIMARY KEY (id_personnel ,id_materiel_consommable )
+        id_personnel Int NOT NULL ,
+        id_mat_conso Int NOT NULL ,
+        PRIMARY KEY (id_personnel ,id_mat_conso )
 )ENGINE=InnoDB;
 
-ALTER TABLE materiel_consommable ADD CONSTRAINT FK_materiel_consommable_id_site FOREIGN KEY (id_site) REFERENCES site_de_stockage(id_site);
-ALTER TABLE materiel_non_consommable ADD CONSTRAINT FK_materiel_non_consommable_id_salle FOREIGN KEY (id_salle) REFERENCES salle(id_salle);
-ALTER TABLE reservation_materiel_non_consommable ADD CONSTRAINT FK_reservation_materiel_non_consommable_id_personnel FOREIGN KEY (id_personnel) REFERENCES personnel(id_personnel);
-ALTER TABLE reservation_materiel_non_consommable ADD CONSTRAINT FK_reservation_materiel_non_consommable_id_materiel_non_consommable FOREIGN KEY (id_materiel_non_consommable) REFERENCES materiel_non_consommable(id_materiel_non_consommable);
-ALTER TABLE reservation_materiel_non_consommable ADD CONSTRAINT FK_reservation_materiel_non_consommable_id_personnel_1 FOREIGN KEY (id_personnel_1) REFERENCES personnel(id_personnel);
-ALTER TABLE reservation_materiel_non_consommable ADD CONSTRAINT FK_reservation_materiel_non_consommable_id_projet FOREIGN KEY (id_projet) REFERENCES projet(id_projet);
-ALTER TABLE demande_materiel_consommable ADD CONSTRAINT FK_demande_materiel_consommable_id_personnel FOREIGN KEY (id_personnel) REFERENCES personnel(id_personnel);
-ALTER TABLE demande_materiel_consommable ADD CONSTRAINT FK_demande_materiel_consommable_id_personnel_1 FOREIGN KEY (id_personnel_1) REFERENCES personnel(id_personnel);
-ALTER TABLE demande_materiel_consommable ADD CONSTRAINT FK_demande_materiel_consommable_id_materiel_consommable FOREIGN KEY (id_materiel_consommable) REFERENCES materiel_consommable(id_materiel_consommable);
-ALTER TABLE demande_materiel_consommable ADD CONSTRAINT FK_demande_materiel_consommable_id_projet FOREIGN KEY (id_projet) REFERENCES projet(id_projet);
+ALTER TABLE mat_conso ADD CONSTRAINT FK_mat_conso_id_site FOREIGN KEY (id_site) REFERENCES site_de_stockage(id_site);
+ALTER TABLE mat_non_conso ADD CONSTRAINT FK_mat_non_conso_id_salle FOREIGN KEY (id_salle) REFERENCES salle(id_salle);
+ALTER TABLE reservation_mat_non_conso ADD CONSTRAINT FK_reservation_mat_non_conso_id_personnel FOREIGN KEY (id_personnel) REFERENCES personnel(id_personnel);
+ALTER TABLE reservation_mat_non_conso ADD CONSTRAINT FK_reservation_mat_non_conso_id_mat_non_conso FOREIGN KEY (id_mat_non_conso) REFERENCES mat_non_conso(id_mat_non_conso);
+ALTER TABLE reservation_mat_non_conso ADD CONSTRAINT FK_reservation_mat_non_conso_id_personnel_1 FOREIGN KEY (id_personnel_1) REFERENCES personnel(id_personnel);
+ALTER TABLE reservation_mat_non_conso ADD CONSTRAINT FK_reservation_mat_non_conso_id_projet FOREIGN KEY (id_projet) REFERENCES projet(id_projet);
+ALTER TABLE demande_mat_conso ADD CONSTRAINT FK_demande_mat_conso_id_personnel FOREIGN KEY (id_personnel) REFERENCES personnel(id_personnel);
+ALTER TABLE demande_mat_conso ADD CONSTRAINT FK_demande_mat_conso_id_personnel_1 FOREIGN KEY (id_personnel_1) REFERENCES personnel(id_personnel);
+ALTER TABLE demande_mat_conso ADD CONSTRAINT FK_demande_mat_conso_id_mat_conso FOREIGN KEY (id_mat_conso) REFERENCES mat_conso(id_mat_conso);
+ALTER TABLE demande_mat_conso ADD CONSTRAINT FK_demande_mat_conso_id_projet FOREIGN KEY (id_projet) REFERENCES projet(id_projet);
 ALTER TABLE identificateur ADD CONSTRAINT FK_identificateur_id_personnel FOREIGN KEY (id_personnel) REFERENCES personnel(id_personnel);
 ALTER TABLE site ADD CONSTRAINT FK_site_id_salle FOREIGN KEY (id_salle) REFERENCES salle(id_salle);
 ALTER TABLE site ADD CONSTRAINT FK_site_id_site_site_de_stockage FOREIGN KEY (id_site_site_de_stockage) REFERENCES site_de_stockage(id_site);
@@ -225,6 +225,6 @@ ALTER TABLE personnel_projet ADD CONSTRAINT FK_personnel_projet_id_personnel FOR
 ALTER TABLE appartenir ADD CONSTRAINT FK_appartenir_id_thematique FOREIGN KEY (id_thematique) REFERENCES thematique(id_thematique);
 ALTER TABLE appartenir ADD CONSTRAINT FK_appartenir_id_projet FOREIGN KEY (id_projet) REFERENCES projet(id_projet);
 ALTER TABLE gerer ADD CONSTRAINT FK_gerer_id_personnel FOREIGN KEY (id_personnel) REFERENCES personnel(id_personnel);
-ALTER TABLE gerer ADD CONSTRAINT FK_gerer_id_materiel_non_consommable FOREIGN KEY (id_materiel_non_consommable) REFERENCES materiel_non_consommable(id_materiel_non_consommable);
+ALTER TABLE gerer ADD CONSTRAINT FK_gerer_id_mat_non_conso FOREIGN KEY (id_mat_non_conso) REFERENCES mat_non_conso(id_mat_non_conso);
 ALTER TABLE manager ADD CONSTRAINT FK_manager_id_personnel FOREIGN KEY (id_personnel) REFERENCES personnel(id_personnel);
-ALTER TABLE manager ADD CONSTRAINT FK_manager_id_materiel_consommable FOREIGN KEY (id_materiel_consommable) REFERENCES materiel_consommable(id_materiel_consommable);
+ALTER TABLE manager ADD CONSTRAINT FK_manager_id_mat_conso FOREIGN KEY (id_mat_conso) REFERENCES mat_conso(id_mat_conso);
