@@ -1,0 +1,16 @@
+// Allow connection without password
+	$cfg['Servers'][$i]['AllowNoPassword'] = true;
+	
+	$cfg['Servers'][$i]['verbose'] = 'MySolutec';
+	$cfg['Servers'][$i]['host'] = '192.168.12.155';
+	$cfg['Servers'][$i]['port'] = $wampConf['mysqlPortUsed'];
+	$cfg['Servers'][$i]['extension'] = 'mysqli';
+	$cfg['Servers'][$i]['auth_type'] = 'cookie';
+	$cfg['Servers'][$i]['user'] = '';
+	$cfg['Servers'][$i]['password'] = '';
+
+	// Hidden databases in PhpMyAdmin left panel
+	//$cfg['Servers'][$i]['hide_db'] = '(information_schema|mysql|performance_schema|sys)';
+
+	// Allow connection without password
+	$cfg['Servers'][$i]['AllowNoPassword'] = true;
