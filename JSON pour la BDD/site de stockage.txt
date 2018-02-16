@@ -1,0 +1,121 @@
+ insert into `site_de_stockage` values (
+    1,
+    'Jamison Lane',
+    'id',
+    1
+  ),
+  (
+    2,
+    'Middleton Street',
+    'deserunt',
+    2
+  ),
+  (
+    3,
+    'Dekoven Court',
+    'minim',
+    3
+  ),
+  (
+    4,
+    'Gain Court',
+    'commodo',
+    4
+  ),
+  (
+    5,
+    'Story Street',
+    'excepteur',
+    5
+  ),
+  (
+    6,
+    'Evans Street',
+    'ea',
+    6
+  ),
+  (
+    7,
+    'Bulwer Place',
+    'est',
+    7
+  ),
+  (
+    8,
+    'Coleman Street',
+    'velit',
+    8
+  ),
+  (
+    9,
+    'Corbin Place',
+    'eiusmod',
+    9
+  ),
+  (
+    10,
+    'Meeker Avenue',
+    'esse',
+    10
+  ),
+  (
+    11,
+    'Dinsmore Place',
+    'eiusmod',
+    11
+  ),
+  (
+    12,
+    'Baltic Street',
+    'occaecat',
+    12
+  ),
+  (
+    13,
+    'Rochester Avenue',
+    'ipsum',
+    13
+  ),
+  (
+    14,
+    'Ash Street',
+    'non',
+    14
+  ),
+  (
+    15,
+    'Box Street',
+    'ipsum',
+    15
+  ),
+  (
+    16,
+    'Gallatin Place',
+    'cillum',
+    16
+  ),
+  (
+    17,
+    'Chester Court',
+    'aliqua',
+    17
+  ),
+  (
+    18,
+    'Polhemus Place',
+    'pariatur',
+    18
+  ),
+  (
+    19,
+    'Macdougal Street',
+    'aute',
+    19
+  ),
+  (
+    20,
+    'Nixon Court',
+    'culpa',
+    20
+  )
+]

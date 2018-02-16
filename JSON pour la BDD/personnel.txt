@@ -1,0 +1,160 @@
+ insert into `personnel` values (
+    1,
+    'Romero',
+    'Corina',
+    'Pierrepont Street',
+    '1977.12.15',
+    true
+  ),
+  (
+    2,
+    'Mclean',
+    'Matthews',
+    'Engert Avenue',
+    '1981.03.23',
+    true
+  ),
+  (
+    3,
+    'Chaney',
+    'Tanisha',
+    'Amherst Street',
+    '1990.06.23',
+    false
+  ),
+  (
+    4,
+    'Hanson',
+    'Tamika',
+    'Central Avenue',
+    '1982.04.09',
+    true
+  ),
+  (
+    5,
+    'Pittman',
+    'Saundra',
+    'Freeman Street',
+    '1995.03.25',
+    false
+  ),
+  (
+    6,
+    'Price',
+    'Fox',
+    'Johnson Avenue',
+    '2011.07.14',
+    false
+  ),
+  (
+    7,
+    'Steele',
+    'Edwards',
+    'Miller Avenue',
+    '1999.09.14',
+    false
+  ),
+  (
+    8,
+    'Stephens',
+    'Singleton',
+    'Ivan Court',
+    '1972.11.23',
+    false
+  ),
+  (
+    9,
+    'Moody',
+    'Salas',
+    'Gerritsen Avenue',
+    '1992.01.26',
+    true
+  ),
+  (
+    10,
+    'Duran',
+    'Dianna',
+    'Woodpoint Road',
+    '2002.09.13',
+    false
+  ),
+  (
+    11,
+    'Thomas',
+    'Macias',
+    'Centre Street',
+    '1992.08.01',
+    false
+  ),
+  (
+    12,
+    'Acevedo',
+    'Hughes',
+    'Opal Court',
+    '2008.02.24',
+    false
+  ),
+  (
+    13,
+    'Santiago',
+    'Alisha',
+    'Veterans Avenue',
+    '1993.03.06',
+    true
+  ),
+  (
+    14,
+    'Scott',
+    'Branch',
+    'Brighton Court',
+    '1997.05.05',
+    true
+  ),
+  (
+    15,
+    'Parsons',
+    'Terrie',
+    'Falmouth Street',
+    '1986.04.13',
+    false
+  ),
+  (
+    16,
+    'Sawyer',
+    'Angie',
+    'Rugby Road',
+    '1962.07.07',
+    true
+  ),
+  (
+    17,
+    'Anthony',
+    'Hammond',
+    'Ferry Place',
+    '1971.01.25',
+    false
+  ),
+  (
+    18,
+    'Everett',
+    'Augusta',
+    'Harwood Place',
+    '1952.10.19',
+    false
+  ),
+  (
+    19,
+    'Walsh',
+    'Cervantes',
+    'Lee Avenue',
+    '2017.01.14',
+    true
+  ),
+  (
+    20,
+    'Weaver',
+    'Winters',
+    'Ovington Avenue',
+    '1987.09.16',
+    true
+  )

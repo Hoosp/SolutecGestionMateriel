@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="62fc9195eaaf40298d449866e8a82340" Name="Diagram1">
+        <EntityTypeShape EntityType="gest_matModel.demande_mat_conso" Width="1.5" PointX="12.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="gest_matModel.identificateur" Width="1.5" PointX="9.75" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="gest_matModel.mat_conso" Width="1.5" PointX="5.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gest_matModel.mat_non_conso" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="gest_matModel.personnel" Width="1.5" PointX="7.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="gest_matModel.personnel_projet" Width="1.5" PointX="12.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="gest_matModel.projet" Width="1.5" PointX="7.5" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="gest_matModel.rese_mat_non_conso" Width="1.5" PointX="9.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="gest_matModel.salle" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gest_matModel.site" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="gest_matModel.site_de_stockage" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="gest_matModel.thematique" Width="1.5" PointX="9.75" PointY="5.125" IsExpanded="true" />
+        <AssociationConnector Association="gest_matModel.FK_demande_mat_conso_id_mat_conso" ManuallyRouted="false" />
+        <AssociationConnector Association="gest_matModel.FK_demande_mat_conso_id_personnel" ManuallyRouted="false" />
+        <AssociationConnector Association="gest_matModel.FK_demande_mat_conso_id_personnel_1" ManuallyRouted="false" />
+        <AssociationConnector Association="gest_matModel.FK_demande_mat_conso_id_projet" ManuallyRouted="false" />
+        <AssociationConnector Association="gest_matModel.FK_identificateur_id_personnel" ManuallyRouted="false" />
+        <AssociationConnector Association="gest_matModel.FK_mat_conso_id_site_de_stockage" ManuallyRouted="false" />
+        <AssociationConnector Association="gest_matModel.FK_mat_non_conso_id_salle" ManuallyRouted="false" />
+        <AssociationConnector Association="gest_matModel.FK_rese_mat_non_conso_id_mat_non_conso" ManuallyRouted="false" />
+        <AssociationConnector Association="gest_matModel.FK_personnel_projet_id_personnel" ManuallyRouted="false" />
+        <AssociationConnector Association="gest_matModel.FK_rese_mat_non_conso_id_personnel" ManuallyRouted="false" />
+        <AssociationConnector Association="gest_matModel.FK_rese_mat_non_conso_id_personnel_1" ManuallyRouted="false" />
+        <AssociationConnector Association="gest_matModel.FK_personnel_projet_id_projet" ManuallyRouted="false" />
+        <AssociationConnector Association="gest_matModel.FK_rese_mat_non_conso_id_projet" ManuallyRouted="false" />
+        <AssociationConnector Association="gest_matModel.FK_salle_id_site" ManuallyRouted="false" />
+        <AssociationConnector Association="gest_matModel.FK_site_de_stockage_id_site" ManuallyRouted="false" />
+        <AssociationConnector Association="gest_matModel.appartenir" ManuallyRouted="false" />
+        <AssociationConnector Association="gest_matModel.gerer" ManuallyRouted="false" />
+        <AssociationConnector Association="gest_matModel.manager" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

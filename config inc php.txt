@@ -14,3 +14,6 @@
 
 	// Allow connection without password
 	$cfg['Servers'][$i]['AllowNoPassword'] = true;
+
+
+

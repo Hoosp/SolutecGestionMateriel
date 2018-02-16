@@ -1,0 +1,80 @@
+ insert into `thematique` values (
+    1,
+    'duis ullamco non'
+  ),
+  (
+    2,
+    'minim cillum culpa'
+  ),
+  (
+    3,
+    'nostrud esse veniam'
+  ),
+  (
+    4,
+    'dolore ex officia'
+  ),
+  (
+    5,
+    'anim nostrud reprehenderit'
+  ),
+  (
+    6,
+    'veniam eu in'
+  ),
+  (
+    7,
+    'ad nostrud dolore'
+  ),
+  (
+    8,
+    'cupidatat magna et'
+  ),
+  (
+    9,
+    'in anim laborum'
+  ),
+  (
+    10,
+    'minim culpa cupidatat'
+  ),
+  (
+    11,
+    'et est mollit'
+  ),
+  (
+    12,
+    'tempor in fugiat'
+  ),
+  (
+    13,
+    'sit laborum eu'
+  ),
+  (
+    14,
+    'eu dolore commodo'
+  ),
+  (
+    15,
+    'consectetur dolor aliqua'
+  ),
+  (
+    16,
+    'dolore anim duis'
+  ),
+  (
+    17,
+    'sunt incididunt consectetur'
+  ),
+  (
+    18,
+    'est reprehenderit anim'
+  ),
+  (
+    19,
+    'commodo occaecat tempor'
+  ),
+  (
+    20,
+    'sint deserunt dolor'
+  )

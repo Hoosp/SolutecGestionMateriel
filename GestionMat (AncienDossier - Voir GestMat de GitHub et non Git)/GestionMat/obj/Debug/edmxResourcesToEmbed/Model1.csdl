@@ -1,0 +1,443 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="gest_matModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="demande_mat_conso">
+    <Key>
+      <PropertyRef Name="id_demande_mat_conso" />
+    </Key>
+    <Property Name="id_demande_mat_conso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="etat_demande" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="date_utilisation" Type="DateTime" Nullable="false" />
+    <Property Name="date_demande" Type="DateTime" Nullable="false" />
+    <Property Name="date_decision" Type="DateTime" Nullable="false" />
+    <Property Name="quantite" Type="Int32" Nullable="false" />
+    <Property Name="id_personnel" Type="Int32" Nullable="false" />
+    <Property Name="id_personnel_1" Type="Int32" Nullable="false" />
+    <Property Name="id_mat_conso" Type="Int32" Nullable="false" />
+    <Property Name="id_projet" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="mat_conso" Relationship="Self.FK_demande_mat_conso_id_mat_conso" FromRole="demande_mat_conso" ToRole="mat_conso" />
+    <NavigationProperty Name="personnel" Relationship="Self.FK_demande_mat_conso_id_personnel" FromRole="demande_mat_conso" ToRole="personnel" />
+    <NavigationProperty Name="personnel1" Relationship="Self.FK_demande_mat_conso_id_personnel_1" FromRole="demande_mat_conso" ToRole="personnel" />
+    <NavigationProperty Name="projet" Relationship="Self.FK_demande_mat_conso_id_projet" FromRole="demande_mat_conso" ToRole="projet" />
+  </EntityType>
+  <EntityType Name="identificateur">
+    <Key>
+      <PropertyRef Name="id_identificateur" />
+    </Key>
+    <Property Name="id_identificateur" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="login" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mdp" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="profil" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="actif" Type="Boolean" Nullable="false" />
+    <Property Name="id_personnel" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="personnel" Relationship="Self.FK_identificateur_id_personnel" FromRole="identificateur" ToRole="personnel" />
+  </EntityType>
+  <EntityType Name="mat_conso">
+    <Key>
+      <PropertyRef Name="id_mat_conso" />
+    </Key>
+    <Property Name="id_mat_conso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="code_barres" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="id_site_de_stockage" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="demande_mat_conso" Relationship="Self.FK_demande_mat_conso_id_mat_conso" FromRole="mat_conso" ToRole="demande_mat_conso" />
+    <NavigationProperty Name="site_de_stockage" Relationship="Self.FK_mat_conso_id_site_de_stockage" FromRole="mat_conso" ToRole="site_de_stockage" />
+    <NavigationProperty Name="personnel" Relationship="Self.manager" FromRole="mat_conso" ToRole="personnel" />
+  </EntityType>
+  <EntityType Name="mat_non_conso">
+    <Key>
+      <PropertyRef Name="id_mat_non_conso" />
+    </Key>
+    <Property Name="id_mat_non_conso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="etat" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" />
+    <Property Name="id_salle" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="salle" Relationship="Self.FK_mat_non_conso_id_salle" FromRole="mat_non_conso" ToRole="salle" />
+    <NavigationProperty Name="rese_mat_non_conso" Relationship="Self.FK_rese_mat_non_conso_id_mat_non_conso" FromRole="mat_non_conso" ToRole="rese_mat_non_conso" />
+    <NavigationProperty Name="personnel" Relationship="Self.gerer" FromRole="mat_non_conso" ToRole="personnel" />
+  </EntityType>
+  <EntityType Name="personnel">
+    <Key>
+      <PropertyRef Name="id_personnel" />
+    </Key>
+    <Property Name="id_personnel" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="prenom" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="adresse" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="date_naissance" Type="DateTime" />
+    <Property Name="estActif" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="demande_mat_conso" Relationship="Self.FK_demande_mat_conso_id_personnel" FromRole="personnel" ToRole="demande_mat_conso" />
+    <NavigationProperty Name="demande_mat_conso1" Relationship="Self.FK_demande_mat_conso_id_personnel_1" FromRole="personnel" ToRole="demande_mat_conso" />
+    <NavigationProperty Name="identificateur" Relationship="Self.FK_identificateur_id_personnel" FromRole="personnel" ToRole="identificateur" />
+    <NavigationProperty Name="personnel_projet" Relationship="Self.FK_personnel_projet_id_personnel" FromRole="personnel" ToRole="personnel_projet" />
+    <NavigationProperty Name="rese_mat_non_conso" Relationship="Self.FK_rese_mat_non_conso_id_personnel" FromRole="personnel" ToRole="rese_mat_non_conso" />
+    <NavigationProperty Name="rese_mat_non_conso1" Relationship="Self.FK_rese_mat_non_conso_id_personnel_1" FromRole="personnel" ToRole="rese_mat_non_conso" />
+    <NavigationProperty Name="mat_non_conso" Relationship="Self.gerer" FromRole="personnel" ToRole="mat_non_conso" />
+    <NavigationProperty Name="mat_conso" Relationship="Self.manager" FromRole="personnel" ToRole="mat_conso" />
+  </EntityType>
+  <EntityType Name="personnel_projet">
+    <Key>
+      <PropertyRef Name="id_projet" />
+      <PropertyRef Name="id_personnel" />
+    </Key>
+    <Property Name="fonction" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_projet" Type="Int32" Nullable="false" />
+    <Property Name="id_personnel" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="personnel" Relationship="Self.FK_personnel_projet_id_personnel" FromRole="personnel_projet" ToRole="personnel" />
+    <NavigationProperty Name="projet" Relationship="Self.FK_personnel_projet_id_projet" FromRole="personnel_projet" ToRole="projet" />
+  </EntityType>
+  <EntityType Name="projet">
+    <Key>
+      <PropertyRef Name="id_projet" />
+    </Key>
+    <Property Name="id_projet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="intitule" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="date_debut" Type="DateTime" Nullable="false" />
+    <Property Name="date_fin_estimee" Type="DateTime" Nullable="false" />
+    <Property Name="date_fin_reelle" Type="DateTime" />
+    <Property Name="budget" Type="Decimal" Nullable="false" />
+    <Property Name="problematique" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="demande_mat_conso" Relationship="Self.FK_demande_mat_conso_id_projet" FromRole="projet" ToRole="demande_mat_conso" />
+    <NavigationProperty Name="personnel_projet" Relationship="Self.FK_personnel_projet_id_projet" FromRole="projet" ToRole="personnel_projet" />
+    <NavigationProperty Name="rese_mat_non_conso" Relationship="Self.FK_rese_mat_non_conso_id_projet" FromRole="projet" ToRole="rese_mat_non_conso" />
+    <NavigationProperty Name="thematique" Relationship="Self.appartenir" FromRole="projet" ToRole="thematique" />
+  </EntityType>
+  <EntityType Name="rese_mat_non_conso">
+    <Key>
+      <PropertyRef Name="id_rese_mat_non_conso" />
+    </Key>
+    <Property Name="id_rese_mat_non_conso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="etat_demande" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="date_debut_utilisation" Type="DateTime" Nullable="false" />
+    <Property Name="date_fin_utilisation" Type="DateTime" Nullable="false" />
+    <Property Name="date_reservation" Type="DateTime" />
+    <Property Name="date_decision" Type="DateTime" />
+    <Property Name="quantite" Type="Int32" Nullable="false" />
+    <Property Name="id_personnel" Type="Int32" Nullable="false" />
+    <Property Name="id_mat_non_conso" Type="Int32" Nullable="false" />
+    <Property Name="id_personnel_1" Type="Int32" Nullable="false" />
+    <Property Name="id_projet" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="mat_non_conso" Relationship="Self.FK_rese_mat_non_conso_id_mat_non_conso" FromRole="rese_mat_non_conso" ToRole="mat_non_conso" />
+    <NavigationProperty Name="personnel" Relationship="Self.FK_rese_mat_non_conso_id_personnel" FromRole="rese_mat_non_conso" ToRole="personnel" />
+    <NavigationProperty Name="personnel1" Relationship="Self.FK_rese_mat_non_conso_id_personnel_1" FromRole="rese_mat_non_conso" ToRole="personnel" />
+    <NavigationProperty Name="projet" Relationship="Self.FK_rese_mat_non_conso_id_projet" FromRole="rese_mat_non_conso" ToRole="projet" />
+  </EntityType>
+  <EntityType Name="salle">
+    <Key>
+      <PropertyRef Name="id_salle" />
+    </Key>
+    <Property Name="id_salle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="id_site" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="mat_non_conso" Relationship="Self.FK_mat_non_conso_id_salle" FromRole="salle" ToRole="mat_non_conso" />
+    <NavigationProperty Name="site" Relationship="Self.FK_salle_id_site" FromRole="salle" ToRole="site" />
+  </EntityType>
+  <EntityType Name="site">
+    <Key>
+      <PropertyRef Name="id_site" />
+    </Key>
+    <Property Name="id_site" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="adresse" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="code_postal" Type="Int32" />
+    <Property Name="ville" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="salle" Relationship="Self.FK_salle_id_site" FromRole="site" ToRole="salle" />
+    <NavigationProperty Name="site_de_stockage" Relationship="Self.FK_site_de_stockage_id_site" FromRole="site" ToRole="site_de_stockage" />
+  </EntityType>
+  <EntityType Name="site_de_stockage">
+    <Key>
+      <PropertyRef Name="id_site_de_stockage" />
+    </Key>
+    <Property Name="id_site_de_stockage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="adresse" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="nom" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="id_site" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="mat_conso" Relationship="Self.FK_mat_conso_id_site_de_stockage" FromRole="site_de_stockage" ToRole="mat_conso" />
+    <NavigationProperty Name="site" Relationship="Self.FK_site_de_stockage_id_site" FromRole="site_de_stockage" ToRole="site" />
+  </EntityType>
+  <EntityType Name="thematique">
+    <Key>
+      <PropertyRef Name="id_thematique" />
+    </Key>
+    <Property Name="id_thematique" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="libelle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="projet" Relationship="Self.appartenir" FromRole="thematique" ToRole="projet" />
+  </EntityType>
+  <Association Name="FK_demande_mat_conso_id_mat_conso">
+    <End Role="mat_conso" Type="Self.mat_conso" Multiplicity="1" />
+    <End Role="demande_mat_conso" Type="Self.demande_mat_conso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mat_conso">
+        <PropertyRef Name="id_mat_conso" />
+      </Principal>
+      <Dependent Role="demande_mat_conso">
+        <PropertyRef Name="id_mat_conso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_demande_mat_conso_id_personnel">
+    <End Role="personnel" Type="Self.personnel" Multiplicity="1" />
+    <End Role="demande_mat_conso" Type="Self.demande_mat_conso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="personnel">
+        <PropertyRef Name="id_personnel" />
+      </Principal>
+      <Dependent Role="demande_mat_conso">
+        <PropertyRef Name="id_personnel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_demande_mat_conso_id_personnel_1">
+    <End Role="personnel" Type="Self.personnel" Multiplicity="1" />
+    <End Role="demande_mat_conso" Type="Self.demande_mat_conso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="personnel">
+        <PropertyRef Name="id_personnel" />
+      </Principal>
+      <Dependent Role="demande_mat_conso">
+        <PropertyRef Name="id_personnel_1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_demande_mat_conso_id_projet">
+    <End Role="projet" Type="Self.projet" Multiplicity="1" />
+    <End Role="demande_mat_conso" Type="Self.demande_mat_conso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projet">
+        <PropertyRef Name="id_projet" />
+      </Principal>
+      <Dependent Role="demande_mat_conso">
+        <PropertyRef Name="id_projet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_identificateur_id_personnel">
+    <End Role="personnel" Type="Self.personnel" Multiplicity="1" />
+    <End Role="identificateur" Type="Self.identificateur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="personnel">
+        <PropertyRef Name="id_personnel" />
+      </Principal>
+      <Dependent Role="identificateur">
+        <PropertyRef Name="id_personnel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_mat_conso_id_site_de_stockage">
+    <End Role="site_de_stockage" Type="Self.site_de_stockage" Multiplicity="1" />
+    <End Role="mat_conso" Type="Self.mat_conso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="site_de_stockage">
+        <PropertyRef Name="id_site_de_stockage" />
+      </Principal>
+      <Dependent Role="mat_conso">
+        <PropertyRef Name="id_site_de_stockage" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_mat_non_conso_id_salle">
+    <End Role="salle" Type="Self.salle" Multiplicity="1" />
+    <End Role="mat_non_conso" Type="Self.mat_non_conso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="salle">
+        <PropertyRef Name="id_salle" />
+      </Principal>
+      <Dependent Role="mat_non_conso">
+        <PropertyRef Name="id_salle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_rese_mat_non_conso_id_mat_non_conso">
+    <End Role="mat_non_conso" Type="Self.mat_non_conso" Multiplicity="1" />
+    <End Role="rese_mat_non_conso" Type="Self.rese_mat_non_conso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mat_non_conso">
+        <PropertyRef Name="id_mat_non_conso" />
+      </Principal>
+      <Dependent Role="rese_mat_non_conso">
+        <PropertyRef Name="id_mat_non_conso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_personnel_projet_id_personnel">
+    <End Role="personnel" Type="Self.personnel" Multiplicity="1" />
+    <End Role="personnel_projet" Type="Self.personnel_projet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="personnel">
+        <PropertyRef Name="id_personnel" />
+      </Principal>
+      <Dependent Role="personnel_projet">
+        <PropertyRef Name="id_personnel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_rese_mat_non_conso_id_personnel">
+    <End Role="personnel" Type="Self.personnel" Multiplicity="1" />
+    <End Role="rese_mat_non_conso" Type="Self.rese_mat_non_conso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="personnel">
+        <PropertyRef Name="id_personnel" />
+      </Principal>
+      <Dependent Role="rese_mat_non_conso">
+        <PropertyRef Name="id_personnel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_rese_mat_non_conso_id_personnel_1">
+    <End Role="personnel" Type="Self.personnel" Multiplicity="1" />
+    <End Role="rese_mat_non_conso" Type="Self.rese_mat_non_conso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="personnel">
+        <PropertyRef Name="id_personnel" />
+      </Principal>
+      <Dependent Role="rese_mat_non_conso">
+        <PropertyRef Name="id_personnel_1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_personnel_projet_id_projet">
+    <End Role="projet" Type="Self.projet" Multiplicity="1" />
+    <End Role="personnel_projet" Type="Self.personnel_projet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projet">
+        <PropertyRef Name="id_projet" />
+      </Principal>
+      <Dependent Role="personnel_projet">
+        <PropertyRef Name="id_projet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_rese_mat_non_conso_id_projet">
+    <End Role="projet" Type="Self.projet" Multiplicity="1" />
+    <End Role="rese_mat_non_conso" Type="Self.rese_mat_non_conso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projet">
+        <PropertyRef Name="id_projet" />
+      </Principal>
+      <Dependent Role="rese_mat_non_conso">
+        <PropertyRef Name="id_projet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_salle_id_site">
+    <End Role="site" Type="Self.site" Multiplicity="1" />
+    <End Role="salle" Type="Self.salle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="site">
+        <PropertyRef Name="id_site" />
+      </Principal>
+      <Dependent Role="salle">
+        <PropertyRef Name="id_site" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_site_de_stockage_id_site">
+    <End Role="site" Type="Self.site" Multiplicity="1" />
+    <End Role="site_de_stockage" Type="Self.site_de_stockage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="site">
+        <PropertyRef Name="id_site" />
+      </Principal>
+      <Dependent Role="site_de_stockage">
+        <PropertyRef Name="id_site" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="appartenir">
+    <End Role="projet" Type="Self.projet" Multiplicity="*" />
+    <End Role="thematique" Type="Self.thematique" Multiplicity="*" />
+  </Association>
+  <Association Name="gerer">
+    <End Role="mat_non_conso" Type="Self.mat_non_conso" Multiplicity="*" />
+    <End Role="personnel" Type="Self.personnel" Multiplicity="*" />
+  </Association>
+  <Association Name="manager">
+    <End Role="mat_conso" Type="Self.mat_conso" Multiplicity="*" />
+    <End Role="personnel" Type="Self.personnel" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="gest_matEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="demande_mat_conso" EntityType="Self.demande_mat_conso" />
+    <EntitySet Name="identificateur" EntityType="Self.identificateur" />
+    <EntitySet Name="mat_conso" EntityType="Self.mat_conso" />
+    <EntitySet Name="mat_non_conso" EntityType="Self.mat_non_conso" />
+    <EntitySet Name="personnel" EntityType="Self.personnel" />
+    <EntitySet Name="personnel_projet" EntityType="Self.personnel_projet" />
+    <EntitySet Name="projet" EntityType="Self.projet" />
+    <EntitySet Name="rese_mat_non_conso" EntityType="Self.rese_mat_non_conso" />
+    <EntitySet Name="salle" EntityType="Self.salle" />
+    <EntitySet Name="site" EntityType="Self.site" />
+    <EntitySet Name="site_de_stockage" EntityType="Self.site_de_stockage" />
+    <EntitySet Name="thematique" EntityType="Self.thematique" />
+    <AssociationSet Name="FK_demande_mat_conso_id_mat_conso" Association="Self.FK_demande_mat_conso_id_mat_conso">
+      <End Role="mat_conso" EntitySet="mat_conso" />
+      <End Role="demande_mat_conso" EntitySet="demande_mat_conso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_demande_mat_conso_id_personnel" Association="Self.FK_demande_mat_conso_id_personnel">
+      <End Role="personnel" EntitySet="personnel" />
+      <End Role="demande_mat_conso" EntitySet="demande_mat_conso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_demande_mat_conso_id_personnel_1" Association="Self.FK_demande_mat_conso_id_personnel_1">
+      <End Role="personnel" EntitySet="personnel" />
+      <End Role="demande_mat_conso" EntitySet="demande_mat_conso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_demande_mat_conso_id_projet" Association="Self.FK_demande_mat_conso_id_projet">
+      <End Role="projet" EntitySet="projet" />
+      <End Role="demande_mat_conso" EntitySet="demande_mat_conso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_identificateur_id_personnel" Association="Self.FK_identificateur_id_personnel">
+      <End Role="personnel" EntitySet="personnel" />
+      <End Role="identificateur" EntitySet="identificateur" />
+    </AssociationSet>
+    <AssociationSet Name="FK_mat_conso_id_site_de_stockage" Association="Self.FK_mat_conso_id_site_de_stockage">
+      <End Role="site_de_stockage" EntitySet="site_de_stockage" />
+      <End Role="mat_conso" EntitySet="mat_conso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_mat_non_conso_id_salle" Association="Self.FK_mat_non_conso_id_salle">
+      <End Role="salle" EntitySet="salle" />
+      <End Role="mat_non_conso" EntitySet="mat_non_conso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_rese_mat_non_conso_id_mat_non_conso" Association="Self.FK_rese_mat_non_conso_id_mat_non_conso">
+      <End Role="mat_non_conso" EntitySet="mat_non_conso" />
+      <End Role="rese_mat_non_conso" EntitySet="rese_mat_non_conso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_personnel_projet_id_personnel" Association="Self.FK_personnel_projet_id_personnel">
+      <End Role="personnel" EntitySet="personnel" />
+      <End Role="personnel_projet" EntitySet="personnel_projet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_rese_mat_non_conso_id_personnel" Association="Self.FK_rese_mat_non_conso_id_personnel">
+      <End Role="personnel" EntitySet="personnel" />
+      <End Role="rese_mat_non_conso" EntitySet="rese_mat_non_conso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_rese_mat_non_conso_id_personnel_1" Association="Self.FK_rese_mat_non_conso_id_personnel_1">
+      <End Role="personnel" EntitySet="personnel" />
+      <End Role="rese_mat_non_conso" EntitySet="rese_mat_non_conso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_personnel_projet_id_projet" Association="Self.FK_personnel_projet_id_projet">
+      <End Role="projet" EntitySet="projet" />
+      <End Role="personnel_projet" EntitySet="personnel_projet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_rese_mat_non_conso_id_projet" Association="Self.FK_rese_mat_non_conso_id_projet">
+      <End Role="projet" EntitySet="projet" />
+      <End Role="rese_mat_non_conso" EntitySet="rese_mat_non_conso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_salle_id_site" Association="Self.FK_salle_id_site">
+      <End Role="site" EntitySet="site" />
+      <End Role="salle" EntitySet="salle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_site_de_stockage_id_site" Association="Self.FK_site_de_stockage_id_site">
+      <End Role="site" EntitySet="site" />
+      <End Role="site_de_stockage" EntitySet="site_de_stockage" />
+    </AssociationSet>
+    <AssociationSet Name="appartenir" Association="Self.appartenir">
+      <End Role="projet" EntitySet="projet" />
+      <End Role="thematique" EntitySet="thematique" />
+    </AssociationSet>
+    <AssociationSet Name="gerer" Association="Self.gerer">
+      <End Role="mat_non_conso" EntitySet="mat_non_conso" />
+      <End Role="personnel" EntitySet="personnel" />
+    </AssociationSet>
+    <AssociationSet Name="manager" Association="Self.manager">
+      <End Role="mat_conso" EntitySet="mat_conso" />
+      <End Role="personnel" EntitySet="personnel" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

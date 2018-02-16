@@ -8,10 +8,10 @@
 #------------------------------------------------------------
 
 CREATE TABLE mat_conso(
-        id_mat_conso int (11) Auto_increment  NOT NULL ,
-        nom          Varchar (25) ,
-        code_barres  Varchar (25) ,
-        id_site      Int NOT NULL ,
+        id_mat_conso        int (11) Auto_increment  NOT NULL ,
+        nom                 Varchar (25) ,
+        code_barres         Varchar (25) ,
+        id_site_de_stockage Int NOT NULL ,
         PRIMARY KEY (id_mat_conso )
 )ENGINE=InnoDB;
 
@@ -21,10 +21,11 @@ CREATE TABLE mat_conso(
 #------------------------------------------------------------
 
 CREATE TABLE site_de_stockage(
-        id_site int (11) Auto_increment  NOT NULL ,
-        adresse Varchar (250) ,
-        nom     Varchar (25) ,
-        PRIMARY KEY (id_site )
+        id_site_de_stockage int (11) Auto_increment  NOT NULL ,
+        adresse             Varchar (250) ,
+        nom                 Varchar (25) ,
+        id_site             Int NOT NULL ,
+        PRIMARY KEY (id_site_de_stockage )
 )ENGINE=InnoDB;
 
 
@@ -58,22 +59,22 @@ CREATE TABLE mat_non_conso(
 
 
 #------------------------------------------------------------
-# Table: reservation_mat_non_conso
+# Table: rese_mat_non_conso
 #------------------------------------------------------------
 
-CREATE TABLE reservation_mat_non_conso(
-        id_reservation_mat_non_conso int (11) Auto_increment  NOT NULL ,
-        etat_demande                 Enum ("en_cours","validee","refusee") NOT NULL ,
-        date_debut_utilisation       Date NOT NULL ,
-        date_fin_utilisation         Date NOT NULL ,
-        date_reservation             Date ,
-        date_decision                Date ,
-        quantite                     Int NOT NULL ,
-        id_personnel                 Int ,
-        id_mat_non_conso             Int NOT NULL ,
-        id_personnel_1               Int ,
-        id_projet                    Int NOT NULL ,
-        PRIMARY KEY (id_reservation_mat_non_conso )
+CREATE TABLE rese_mat_non_conso(
+        id_rese_mat_non_conso  int (11) Auto_increment  NOT NULL ,
+        etat_demande           Enum ("en_cours","validee","refusee") NOT NULL ,
+        date_debut_utilisation Date NOT NULL ,
+        date_fin_utilisation   Date NOT NULL ,
+        date_reservation       Date ,
+        date_decision          Date ,
+        quantite               Int NOT NULL ,
+        id_personnel           Int NOT NULL ,
+        id_mat_non_conso       Int NOT NULL ,
+        id_personnel_1         Int NOT NULL ,
+        id_projet              Int NOT NULL ,
+        PRIMARY KEY (id_rese_mat_non_conso )
 )ENGINE=InnoDB;
 
 
@@ -95,6 +96,7 @@ CREATE TABLE thematique(
 CREATE TABLE salle(
         id_salle int (11) Auto_increment  NOT NULL ,
         nom      Varchar (25) ,
+        id_site  Int NOT NULL ,
         PRIMARY KEY (id_salle )
 )ENGINE=InnoDB;
 
@@ -109,6 +111,7 @@ CREATE TABLE personnel(
         prenom         Varchar (25) ,
         adresse        Varchar (250) ,
         date_naissance Date ,
+        estActif       Bool NOT NULL ,
         PRIMARY KEY (id_personnel )
 )ENGINE=InnoDB;
 
@@ -124,8 +127,8 @@ CREATE TABLE demande_mat_conso(
         date_demande         Date NOT NULL ,
         date_decision        Date ,
         quantite             Int NOT NULL ,
-        id_personnel         Int ,
-        id_personnel_1       Int ,
+        id_personnel         Int NOT NULL ,
+        id_personnel_1       Int NOT NULL ,
         id_mat_conso         Int NOT NULL ,
         id_projet            Int NOT NULL ,
         PRIMARY KEY (id_demande_mat_conso )
@@ -142,7 +145,7 @@ CREATE TABLE identificateur(
         mdp               Varchar (25) NOT NULL ,
         profil            Enum ("administrateur","acteur","responsable","agent_non_consommable","agent_consommable") NOT NULL ,
         actif             Bool NOT NULL ,
-        id_personnel      Int ,
+        id_personnel      Int NOT NULL ,
         PRIMARY KEY (id_identificateur )
 )ENGINE=InnoDB;
 
@@ -152,13 +155,11 @@ CREATE TABLE identificateur(
 #------------------------------------------------------------
 
 CREATE TABLE site(
-        id_site                  int (11) Auto_increment  NOT NULL ,
-        nom                      Varchar (25) ,
-        adresse                  Varchar (250) ,
-        code_postal              Int ,
-        ville                    Varchar (25) ,
-        id_salle                 Int NOT NULL ,
-        id_site_site_de_stockage Int NOT NULL ,
+        id_site     int (11) Auto_increment  NOT NULL ,
+        nom         Varchar (25) ,
+        adresse     Varchar (250) ,
+        code_postal Int ,
+        ville       Varchar (25) ,
         PRIMARY KEY (id_site )
 )ENGINE=InnoDB;
 
@@ -207,19 +208,19 @@ CREATE TABLE manager(
         PRIMARY KEY (id_personnel ,id_mat_conso )
 )ENGINE=InnoDB;
 
-ALTER TABLE mat_conso ADD CONSTRAINT FK_mat_conso_id_site FOREIGN KEY (id_site) REFERENCES site_de_stockage(id_site);
+ALTER TABLE mat_conso ADD CONSTRAINT FK_mat_conso_id_site_de_stockage FOREIGN KEY (id_site_de_stockage) REFERENCES site_de_stockage(id_site_de_stockage);
+ALTER TABLE site_de_stockage ADD CONSTRAINT FK_site_de_stockage_id_site FOREIGN KEY (id_site) REFERENCES site(id_site);
 ALTER TABLE mat_non_conso ADD CONSTRAINT FK_mat_non_conso_id_salle FOREIGN KEY (id_salle) REFERENCES salle(id_salle);
-ALTER TABLE reservation_mat_non_conso ADD CONSTRAINT FK_reservation_mat_non_conso_id_personnel FOREIGN KEY (id_personnel) REFERENCES personnel(id_personnel);
-ALTER TABLE reservation_mat_non_conso ADD CONSTRAINT FK_reservation_mat_non_conso_id_mat_non_conso FOREIGN KEY (id_mat_non_conso) REFERENCES mat_non_conso(id_mat_non_conso);
-ALTER TABLE reservation_mat_non_conso ADD CONSTRAINT FK_reservation_mat_non_conso_id_personnel_1 FOREIGN KEY (id_personnel_1) REFERENCES personnel(id_personnel);
-ALTER TABLE reservation_mat_non_conso ADD CONSTRAINT FK_reservation_mat_non_conso_id_projet FOREIGN KEY (id_projet) REFERENCES projet(id_projet);
+ALTER TABLE rese_mat_non_conso ADD CONSTRAINT FK_rese_mat_non_conso_id_personnel FOREIGN KEY (id_personnel) REFERENCES personnel(id_personnel);
+ALTER TABLE rese_mat_non_conso ADD CONSTRAINT FK_rese_mat_non_conso_id_mat_non_conso FOREIGN KEY (id_mat_non_conso) REFERENCES mat_non_conso(id_mat_non_conso);
+ALTER TABLE rese_mat_non_conso ADD CONSTRAINT FK_rese_mat_non_conso_id_personnel_1 FOREIGN KEY (id_personnel_1) REFERENCES personnel(id_personnel);
+ALTER TABLE rese_mat_non_conso ADD CONSTRAINT FK_rese_mat_non_conso_id_projet FOREIGN KEY (id_projet) REFERENCES projet(id_projet);
+ALTER TABLE salle ADD CONSTRAINT FK_salle_id_site FOREIGN KEY (id_site) REFERENCES site(id_site);
 ALTER TABLE demande_mat_conso ADD CONSTRAINT FK_demande_mat_conso_id_personnel FOREIGN KEY (id_personnel) REFERENCES personnel(id_personnel);
 ALTER TABLE demande_mat_conso ADD CONSTRAINT FK_demande_mat_conso_id_personnel_1 FOREIGN KEY (id_personnel_1) REFERENCES personnel(id_personnel);
 ALTER TABLE demande_mat_conso ADD CONSTRAINT FK_demande_mat_conso_id_mat_conso FOREIGN KEY (id_mat_conso) REFERENCES mat_conso(id_mat_conso);
 ALTER TABLE demande_mat_conso ADD CONSTRAINT FK_demande_mat_conso_id_projet FOREIGN KEY (id_projet) REFERENCES projet(id_projet);
 ALTER TABLE identificateur ADD CONSTRAINT FK_identificateur_id_personnel FOREIGN KEY (id_personnel) REFERENCES personnel(id_personnel);
-ALTER TABLE site ADD CONSTRAINT FK_site_id_salle FOREIGN KEY (id_salle) REFERENCES salle(id_salle);
-ALTER TABLE site ADD CONSTRAINT FK_site_id_site_site_de_stockage FOREIGN KEY (id_site_site_de_stockage) REFERENCES site_de_stockage(id_site);
 ALTER TABLE personnel_projet ADD CONSTRAINT FK_personnel_projet_id_projet FOREIGN KEY (id_projet) REFERENCES projet(id_projet);
 ALTER TABLE personnel_projet ADD CONSTRAINT FK_personnel_projet_id_personnel FOREIGN KEY (id_personnel) REFERENCES personnel(id_personnel);
 ALTER TABLE appartenir ADD CONSTRAINT FK_appartenir_id_thematique FOREIGN KEY (id_thematique) REFERENCES thematique(id_thematique);
