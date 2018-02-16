@@ -1,0 +1,141 @@
+insert into `site` values
+  (
+    0,
+    'in',
+    'Graham Avenue',
+    49064,
+    'Stagecoach'
+  ),
+  (
+    1,
+    'sint',
+    'Prince Street',
+    42582,
+    'Chautauqua'
+  ),
+  (
+    2,
+    'irure',
+    'Morton Street',
+    25726,
+    'Brewster'
+  ),
+  (
+    3,
+    'adipisicing',
+    'Forbell Street',
+    69186,
+    'Baker'
+  ),
+  (
+    4,
+    'consectetur',
+    'Baughman Place',
+    45037,
+    'Leroy'
+  ),
+  (
+    5,
+    'ullamco',
+    'Clara Street',
+    51095,
+    'Muse'
+  ),
+  (
+    6,
+    'tempor',
+    'Berkeley Place',
+    22480,
+    'Salix'
+  ),
+  (
+    7,
+    'nisi',
+    'Arlington Avenue',
+    99193,
+    'Freelandville'
+  ),
+  (
+    8,
+    'consectetur',
+    'Anna Court',
+    27752,
+    'Trexlertown'
+  ),
+  (
+	9,
+    'cillum',
+    'Gerritsen Avenue',
+    95976,
+    'Sisquoc'
+  ),
+  (
+    10,
+    'exercitation',
+    'India Street',
+    65551,
+    'Abiquiu'
+  ),
+  (
+    11,
+    'occaecat',
+    'Beaver Street',
+    20071,
+    'Conway'
+  ),
+  (
+    12,
+    'id',
+    'Grafton Street',
+    93236,
+    'Byrnedale'
+  ),
+  (
+    13,
+    'et',
+    'Putnam Avenue',
+    41004,
+    'Lydia'
+  ),
+  (
+    14,
+    'tempor',
+    'Walker Court',
+    29324,
+    'Choctaw'
+  ),
+  (
+    15,
+    'amet',
+    'Seagate Avenue',
+    64490,
+    'Eastmont'
+  ),
+  (
+    16,
+    'consequat',
+    'Doscher Street',
+    43298,
+    'Vandiver'
+  ),
+  (
+    17,
+    'officia',
+    'Lafayette Walk',
+    57813,
+    'Campo'
+  ),
+  (
+    18,
+    'veniam',
+    'Seacoast Terrace',
+    44222,
+    'Oberlin'
+  ),
+  (
+    19,
+    'aliqua',
+    'Coffey Street',
+    25154,
+    'Villarreal'
+  )
