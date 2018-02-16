@@ -3,6 +3,27 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
 
+        <div>
+            <asp:Label ID="lbl_AjouterMatConso" runat="server" Text="Remplir les champs pour ajouter un materiel consommable : "></asp:Label>
+        </div>
+
+        <div>
+            <asp:Label ID="lbl_NomMatConso" runat="server" Text="Nom"></asp:Label>
+            <asp:TextBox ID="tbx_Nom" runat="server"></asp:TextBox>
+            <asp:Label ID="lbl_CodeBarre" runat="server" Text="Code barre"></asp:Label>
+            <asp:TextBox ID="tbx_CodeBarre" runat="server"></asp:TextBox>
+            <asp:Label ID="lbl_SiteDeStockage" runat="server" Text="Site de stockage"></asp:Label>
+            <asp:DropDownList ID="ddl_SiteStockage" runat="server" DataSourceID="odsSiteStockage" DataTextField="nom" DataValueField="id_site_de_stockage"/>
+           
+        </div>
+
+        <div>
+            <asp:Button ID="btnAjouterMatConso" runat="server" Text="Ajouter un nouveau materiel consommable" OnClick="btnAjouterMatConso_Click" CommandArgument='<%# Eval("id_mat_conso") %>' />   
+        </div>
+        
+        
+
+
 
         
 
@@ -13,7 +34,24 @@
             <asp:BoundField DataField="nom" HeaderText="nom" SortExpression="nom" />
             <asp:BoundField DataField="code_barres" HeaderText="code_barres" SortExpression="code_barres" />
 
-            <asp:BoundField DataField="id_site_de_stockage" HeaderText="id_site_de_stockage" SortExpression="id_site_de_stockage" />
+            <asp:TemplateField HeaderText="Nom site de stockage">
+                <ItemTemplate>
+                 <asp:Label ID="id_site_de_stockage" runat="server" Text='<%# Eval("site_de_stockage.nom") %>'></asp:Label>
+                    </ItemTemplate>
+            </asp:TemplateField> 
+
+            <asp:TemplateField HeaderText="">
+                <ItemTemplate>
+                     <asp:Button ID="btnModifier" runat="server" Text="Modifier" OnCommand="ModifierMatConso_Command" CommandArgument='<%# Eval("id_mat_conso") %>'></asp:Button>
+               </ItemTemplate>
+            </asp:TemplateField>
+
+            <asp:TemplateField HeaderText="">
+                <ItemTemplate>
+                     <asp:Button ID="btnSupprimer" runat="server" Text="Supprimer" OnCommand="SupprimerMatConso_Command" CommandArgument='<%# Eval("id_mat_conso") %>'></asp:Button>
+               </ItemTemplate>
+            </asp:TemplateField>
+
         </Columns>
         <EditRowStyle BackColor="#999999" />
         <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -29,8 +67,9 @@
 
         
         <asp:ObjectDataSource ID="odsMaterielConsommable" runat="server" SelectMethod ="Get" TypeName="GestMat.dto.DtoListeMaterielConsommable" OldValuesParameterFormatString="original_{0}" ></asp:ObjectDataSource>
+        <asp:ObjectDataSource ID="odsSiteStockage" runat="server" SelectMethod ="Get" TypeName="GestMat.dto.DtoListeSiteDeStockage" OldValuesParameterFormatString="original_{0}" ></asp:ObjectDataSource>
 
-
+    
 
 
 

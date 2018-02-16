@@ -216,6 +216,8 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="dao\DaoListeSiteDeStockage.cs" />
+    <Compile Include="dto\DtoListeSiteDeStockage.cs" />
     <Compile Include="ListeMaterielNonConsommable.aspx.cs">
       <DependentUpon>ListeMaterielNonConsommable.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
