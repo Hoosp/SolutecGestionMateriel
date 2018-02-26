@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="gest_matModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="gest_matModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="appartenir">
           <Key>
             <PropertyRef Name="id_thematique" />
@@ -62,7 +62,6 @@
           <Property Name="id_mat_conso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nom" Type="varchar" MaxLength="25" />
           <Property Name="code_barres" Type="varchar" MaxLength="25" />
-          <Property Name="id_site_de_stockage" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="mat_non_conso">
           <Key>
@@ -92,6 +91,15 @@
           <Property Name="fonction" Type="enum" Nullable="false" />
           <Property Name="id_projet" Type="int" Nullable="false" />
           <Property Name="id_personnel" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="placer">
+          <Key>
+            <PropertyRef Name="id_mat_conso" />
+            <PropertyRef Name="id_site_de_stockage" />
+          </Key>
+          <Property Name="id_mat_conso" Type="int" Nullable="false" />
+          <Property Name="id_site_de_stockage" Type="int" Nullable="false" />
+          <Property Name="quantite" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="projet">
           <Key>
@@ -287,18 +295,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_mat_conso_id_site_de_stockage">
-          <End Role="site_de_stockage" Type="Self.site_de_stockage" Multiplicity="1" />
-          <End Role="mat_conso" Type="Self.mat_conso" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="site_de_stockage">
-              <PropertyRef Name="id_site_de_stockage" />
-            </Principal>
-            <Dependent Role="mat_conso">
-              <PropertyRef Name="id_site_de_stockage" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_mat_non_conso_id_salle">
           <End Role="salle" Type="Self.salle" Multiplicity="1" />
           <End Role="mat_non_conso" Type="Self.mat_non_conso" Multiplicity="*" />
@@ -332,6 +328,30 @@
             </Principal>
             <Dependent Role="personnel_projet">
               <PropertyRef Name="id_projet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_placer_id_mat_conso">
+          <End Role="mat_conso" Type="Self.mat_conso" Multiplicity="1" />
+          <End Role="placer" Type="Self.placer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mat_conso">
+              <PropertyRef Name="id_mat_conso" />
+            </Principal>
+            <Dependent Role="placer">
+              <PropertyRef Name="id_mat_conso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_placer_id_site_de_stockage">
+          <End Role="site_de_stockage" Type="Self.site_de_stockage" Multiplicity="1" />
+          <End Role="placer" Type="Self.placer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="site_de_stockage">
+              <PropertyRef Name="id_site_de_stockage" />
+            </Principal>
+            <Dependent Role="placer">
+              <PropertyRef Name="id_site_de_stockage" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -417,6 +437,7 @@
           <EntitySet Name="mat_non_conso" EntityType="Self.mat_non_conso" Schema="gest_mat" store:Type="Tables" />
           <EntitySet Name="personnel" EntityType="Self.personnel" Schema="gest_mat" store:Type="Tables" />
           <EntitySet Name="personnel_projet" EntityType="Self.personnel_projet" Schema="gest_mat" store:Type="Tables" />
+          <EntitySet Name="placer" EntityType="Self.placer" Schema="gest_mat" store:Type="Tables" />
           <EntitySet Name="projet" EntityType="Self.projet" Schema="gest_mat" store:Type="Tables" />
           <EntitySet Name="rese_mat_non_conso" EntityType="Self.rese_mat_non_conso" Schema="gest_mat" store:Type="Tables" />
           <EntitySet Name="salle" EntityType="Self.salle" Schema="gest_mat" store:Type="Tables" />
@@ -467,10 +488,6 @@
             <End Role="personnel" EntitySet="personnel" />
             <End Role="manager" EntitySet="manager" />
           </AssociationSet>
-          <AssociationSet Name="FK_mat_conso_id_site_de_stockage" Association="Self.FK_mat_conso_id_site_de_stockage">
-            <End Role="site_de_stockage" EntitySet="site_de_stockage" />
-            <End Role="mat_conso" EntitySet="mat_conso" />
-          </AssociationSet>
           <AssociationSet Name="FK_mat_non_conso_id_salle" Association="Self.FK_mat_non_conso_id_salle">
             <End Role="salle" EntitySet="salle" />
             <End Role="mat_non_conso" EntitySet="mat_non_conso" />
@@ -482,6 +499,14 @@
           <AssociationSet Name="FK_personnel_projet_id_projet" Association="Self.FK_personnel_projet_id_projet">
             <End Role="projet" EntitySet="projet" />
             <End Role="personnel_projet" EntitySet="personnel_projet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_placer_id_mat_conso" Association="Self.FK_placer_id_mat_conso">
+            <End Role="mat_conso" EntitySet="mat_conso" />
+            <End Role="placer" EntitySet="placer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_placer_id_site_de_stockage" Association="Self.FK_placer_id_site_de_stockage">
+            <End Role="site_de_stockage" EntitySet="site_de_stockage" />
+            <End Role="placer" EntitySet="placer" />
           </AssociationSet>
           <AssociationSet Name="FK_rese_mat_non_conso_id_mat_non_conso" Association="Self.FK_rese_mat_non_conso_id_mat_non_conso">
             <End Role="mat_non_conso" EntitySet="mat_non_conso" />
@@ -508,8 +533,7 @@
             <End Role="site_de_stockage" EntitySet="site_de_stockage" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="gest_matModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -551,10 +575,9 @@
           <Property Name="id_mat_conso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nom" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="code_barres" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="id_site_de_stockage" Type="Int32" Nullable="false" />
           <NavigationProperty Name="demande_mat_conso" Relationship="Self.FK_demande_mat_conso_id_mat_conso" FromRole="mat_conso" ToRole="demande_mat_conso" />
-          <NavigationProperty Name="site_de_stockage" Relationship="Self.FK_mat_conso_id_site_de_stockage" FromRole="mat_conso" ToRole="site_de_stockage" />
           <NavigationProperty Name="personnel" Relationship="Self.manager" FromRole="mat_conso" ToRole="personnel" />
+          <NavigationProperty Name="placer" Relationship="gest_matModel.FK_placer_id_mat_conso" FromRole="mat_conso" ToRole="placer" />
         </EntityType>
         <EntityType Name="mat_non_conso">
           <Key>
@@ -664,8 +687,8 @@
           <Property Name="adresse" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="nom" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="id_site" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="mat_conso" Relationship="Self.FK_mat_conso_id_site_de_stockage" FromRole="site_de_stockage" ToRole="mat_conso" />
           <NavigationProperty Name="site" Relationship="Self.FK_site_de_stockage_id_site" FromRole="site_de_stockage" ToRole="site" />
+          <NavigationProperty Name="placer" Relationship="gest_matModel.FK_placer_id_site_de_stockage" FromRole="site_de_stockage" ToRole="placer" />
         </EntityType>
         <EntityType Name="thematique">
           <Key>
@@ -732,18 +755,6 @@
             </Principal>
             <Dependent Role="identificateur">
               <PropertyRef Name="id_personnel" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_mat_conso_id_site_de_stockage">
-          <End Role="site_de_stockage" Type="Self.site_de_stockage" Multiplicity="1" />
-          <End Role="mat_conso" Type="Self.mat_conso" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="site_de_stockage">
-              <PropertyRef Name="id_site_de_stockage" />
-            </Principal>
-            <Dependent Role="mat_conso">
-              <PropertyRef Name="id_site_de_stockage" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -900,10 +911,6 @@
             <End Role="personnel" EntitySet="personnel" />
             <End Role="identificateur" EntitySet="identificateur" />
           </AssociationSet>
-          <AssociationSet Name="FK_mat_conso_id_site_de_stockage" Association="Self.FK_mat_conso_id_site_de_stockage">
-            <End Role="site_de_stockage" EntitySet="site_de_stockage" />
-            <End Role="mat_conso" EntitySet="mat_conso" />
-          </AssociationSet>
           <AssociationSet Name="FK_mat_non_conso_id_salle" Association="Self.FK_mat_non_conso_id_salle">
             <End Role="salle" EntitySet="salle" />
             <End Role="mat_non_conso" EntitySet="mat_non_conso" />
@@ -952,7 +959,51 @@
             <End Role="mat_conso" EntitySet="mat_conso" />
             <End Role="personnel" EntitySet="personnel" />
           </AssociationSet>
+          <EntitySet Name="placer" EntityType="gest_matModel.placer" />
+          <AssociationSet Name="FK_placer_id_mat_conso" Association="gest_matModel.FK_placer_id_mat_conso">
+            <End Role="mat_conso" EntitySet="mat_conso" />
+            <End Role="placer" EntitySet="placer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_placer_id_site_de_stockage" Association="gest_matModel.FK_placer_id_site_de_stockage">
+            <End Role="site_de_stockage" EntitySet="site_de_stockage" />
+            <End Role="placer" EntitySet="placer" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="placer">
+          <Key>
+            <PropertyRef Name="id_mat_conso" />
+            <PropertyRef Name="id_site_de_stockage" />
+          </Key>
+          <Property Name="id_mat_conso" Type="Int32" Nullable="false" />
+          <Property Name="id_site_de_stockage" Type="Int32" Nullable="false" />
+          <Property Name="quantite" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="mat_conso" Relationship="gest_matModel.FK_placer_id_mat_conso" FromRole="placer" ToRole="mat_conso" />
+          <NavigationProperty Name="site_de_stockage" Relationship="gest_matModel.FK_placer_id_site_de_stockage" FromRole="placer" ToRole="site_de_stockage" />
+        </EntityType>
+        <Association Name="FK_placer_id_mat_conso">
+          <End Type="gest_matModel.mat_conso" Role="mat_conso" Multiplicity="1" />
+          <End Type="gest_matModel.placer" Role="placer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mat_conso">
+              <PropertyRef Name="id_mat_conso" />
+            </Principal>
+            <Dependent Role="placer">
+              <PropertyRef Name="id_mat_conso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_placer_id_site_de_stockage">
+          <End Type="gest_matModel.site_de_stockage" Role="site_de_stockage" Multiplicity="1" />
+          <End Type="gest_matModel.placer" Role="placer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="site_de_stockage">
+              <PropertyRef Name="id_site_de_stockage" />
+            </Principal>
+            <Dependent Role="placer">
+              <PropertyRef Name="id_site_de_stockage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -993,7 +1044,6 @@
                 <ScalarProperty Name="id_mat_conso" ColumnName="id_mat_conso" />
                 <ScalarProperty Name="nom" ColumnName="nom" />
                 <ScalarProperty Name="code_barres" ColumnName="code_barres" />
-                <ScalarProperty Name="id_site_de_stockage" ColumnName="id_site_de_stockage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1120,6 +1170,15 @@
               <ScalarProperty Name="id_personnel" ColumnName="id_personnel" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="placer">
+            <EntityTypeMapping TypeName="gest_matModel.placer">
+              <MappingFragment StoreEntitySet="placer">
+                <ScalarProperty Name="quantite" ColumnName="quantite" />
+                <ScalarProperty Name="id_site_de_stockage" ColumnName="id_site_de_stockage" />
+                <ScalarProperty Name="id_mat_conso" ColumnName="id_mat_conso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

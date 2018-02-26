@@ -16,7 +16,7 @@ namespace GestMat
     {
         public site_de_stockage()
         {
-            this.mat_conso = new HashSet<mat_conso>();
+            this.placer = new HashSet<placer>();
         }
     
         public int id_site_de_stockage { get; set; }
@@ -24,7 +24,7 @@ namespace GestMat
         public string nom { get; set; }
         public int id_site { get; set; }
     
-        public virtual ICollection<mat_conso> mat_conso { get; set; }
         public virtual site site { get; set; }
+        public virtual ICollection<placer> placer { get; set; }
     }
 }

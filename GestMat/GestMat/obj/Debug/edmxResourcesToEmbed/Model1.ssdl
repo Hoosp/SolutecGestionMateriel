@@ -57,7 +57,6 @@
     <Property Name="id_mat_conso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nom" Type="varchar" MaxLength="25" />
     <Property Name="code_barres" Type="varchar" MaxLength="25" />
-    <Property Name="id_site_de_stockage" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="mat_non_conso">
     <Key>
@@ -87,6 +86,15 @@
     <Property Name="fonction" Type="enum" Nullable="false" />
     <Property Name="id_projet" Type="int" Nullable="false" />
     <Property Name="id_personnel" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="placer">
+    <Key>
+      <PropertyRef Name="id_mat_conso" />
+      <PropertyRef Name="id_site_de_stockage" />
+    </Key>
+    <Property Name="id_mat_conso" Type="int" Nullable="false" />
+    <Property Name="id_site_de_stockage" Type="int" Nullable="false" />
+    <Property Name="quantite" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="projet">
     <Key>
@@ -282,18 +290,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_mat_conso_id_site_de_stockage">
-    <End Role="site_de_stockage" Type="Self.site_de_stockage" Multiplicity="1" />
-    <End Role="mat_conso" Type="Self.mat_conso" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="site_de_stockage">
-        <PropertyRef Name="id_site_de_stockage" />
-      </Principal>
-      <Dependent Role="mat_conso">
-        <PropertyRef Name="id_site_de_stockage" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_mat_non_conso_id_salle">
     <End Role="salle" Type="Self.salle" Multiplicity="1" />
     <End Role="mat_non_conso" Type="Self.mat_non_conso" Multiplicity="*" />
@@ -327,6 +323,30 @@
       </Principal>
       <Dependent Role="personnel_projet">
         <PropertyRef Name="id_projet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_placer_id_mat_conso">
+    <End Role="mat_conso" Type="Self.mat_conso" Multiplicity="1" />
+    <End Role="placer" Type="Self.placer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mat_conso">
+        <PropertyRef Name="id_mat_conso" />
+      </Principal>
+      <Dependent Role="placer">
+        <PropertyRef Name="id_mat_conso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_placer_id_site_de_stockage">
+    <End Role="site_de_stockage" Type="Self.site_de_stockage" Multiplicity="1" />
+    <End Role="placer" Type="Self.placer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="site_de_stockage">
+        <PropertyRef Name="id_site_de_stockage" />
+      </Principal>
+      <Dependent Role="placer">
+        <PropertyRef Name="id_site_de_stockage" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -412,6 +432,7 @@
     <EntitySet Name="mat_non_conso" EntityType="Self.mat_non_conso" Schema="gest_mat" store:Type="Tables" />
     <EntitySet Name="personnel" EntityType="Self.personnel" Schema="gest_mat" store:Type="Tables" />
     <EntitySet Name="personnel_projet" EntityType="Self.personnel_projet" Schema="gest_mat" store:Type="Tables" />
+    <EntitySet Name="placer" EntityType="Self.placer" Schema="gest_mat" store:Type="Tables" />
     <EntitySet Name="projet" EntityType="Self.projet" Schema="gest_mat" store:Type="Tables" />
     <EntitySet Name="rese_mat_non_conso" EntityType="Self.rese_mat_non_conso" Schema="gest_mat" store:Type="Tables" />
     <EntitySet Name="salle" EntityType="Self.salle" Schema="gest_mat" store:Type="Tables" />
@@ -462,10 +483,6 @@
       <End Role="personnel" EntitySet="personnel" />
       <End Role="manager" EntitySet="manager" />
     </AssociationSet>
-    <AssociationSet Name="FK_mat_conso_id_site_de_stockage" Association="Self.FK_mat_conso_id_site_de_stockage">
-      <End Role="site_de_stockage" EntitySet="site_de_stockage" />
-      <End Role="mat_conso" EntitySet="mat_conso" />
-    </AssociationSet>
     <AssociationSet Name="FK_mat_non_conso_id_salle" Association="Self.FK_mat_non_conso_id_salle">
       <End Role="salle" EntitySet="salle" />
       <End Role="mat_non_conso" EntitySet="mat_non_conso" />
@@ -477,6 +494,14 @@
     <AssociationSet Name="FK_personnel_projet_id_projet" Association="Self.FK_personnel_projet_id_projet">
       <End Role="projet" EntitySet="projet" />
       <End Role="personnel_projet" EntitySet="personnel_projet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_placer_id_mat_conso" Association="Self.FK_placer_id_mat_conso">
+      <End Role="mat_conso" EntitySet="mat_conso" />
+      <End Role="placer" EntitySet="placer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_placer_id_site_de_stockage" Association="Self.FK_placer_id_site_de_stockage">
+      <End Role="site_de_stockage" EntitySet="site_de_stockage" />
+      <End Role="placer" EntitySet="placer" />
     </AssociationSet>
     <AssociationSet Name="FK_rese_mat_non_conso_id_mat_non_conso" Association="Self.FK_rese_mat_non_conso_id_mat_non_conso">
       <End Role="mat_non_conso" EntitySet="mat_non_conso" />

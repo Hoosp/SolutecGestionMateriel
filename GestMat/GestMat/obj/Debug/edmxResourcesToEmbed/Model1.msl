@@ -35,7 +35,6 @@
           <ScalarProperty Name="id_mat_conso" ColumnName="id_mat_conso" />
           <ScalarProperty Name="nom" ColumnName="nom" />
           <ScalarProperty Name="code_barres" ColumnName="code_barres" />
-          <ScalarProperty Name="id_site_de_stockage" ColumnName="id_site_de_stockage" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -162,5 +161,14 @@
         <ScalarProperty Name="id_personnel" ColumnName="id_personnel" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="placer">
+      <EntityTypeMapping TypeName="gest_matModel.placer">
+        <MappingFragment StoreEntitySet="placer">
+          <ScalarProperty Name="quantite" ColumnName="quantite" />
+          <ScalarProperty Name="id_site_de_stockage" ColumnName="id_site_de_stockage" />
+          <ScalarProperty Name="id_mat_conso" ColumnName="id_mat_conso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

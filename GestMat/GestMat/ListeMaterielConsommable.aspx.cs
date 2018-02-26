@@ -11,32 +11,54 @@ namespace GestMat
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+        }
+
+        protected void BtnGrid(object sender, GridViewCommandEventArgs e)
+        {
+
+            //int index = e.CommandArgument;
+
+            if(e.CommandName == "SupprimerMatConso")
+            {
+                int idMatConso = Convert.ToInt32(e.CommandArgument);
+
+                dto.DtoListeMaterielConsommable.SuppMatConso(idMatConso);
+                gvMaterielConsommable.DataBind();
+                Response.Redirect(Request.RawUrl);
+                //System.Diagnostics.Debug.WriteLine(idMatConso);
+            }
+
+            //System.Diagnostics.Debug.WriteLine("Yo");
+            
+            if (e.CommandName == "ModifierMatConso")
+            {
+                int idMatConso = Convert.ToInt32(e.CommandArgument);
+
+                mat_conso matConso = dto.DtoListeMaterielConsommable.Get(idMatConso);
+
+                //Response.Redirect(string.Format("~/ModifierMatConsoForm?matConso={0}", matCons));
+                
+                Session["matConso"] = matConso;  // saves to session
+                Response.Redirect("~/ModifierMatConsoForm.aspx");
+            }
+            
+                
+            
 
         }
 
-        protected void ModifierMatConso_Command(object sender, EventArgs e)
+        protected void BtnAjouterMatConso_Click(object sender, EventArgs e)
         {
-
-        }
-
-        protected void SupprimerMatConso_Command(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnAjouterMatConso_Click(object sender, EventArgs e)
-        {
-            int idStagiaire = Convert.ToInt32(ddlAjouterStagiaire.SelectedValue);
-            dto.DtoSessionCursus.AddStagiaire(idSessionCursus, idStagiaire);
-            gvStagiaires.DataBind();
-            ddlAjouterStagiaire.DataBind();
+            
+            dto.DtoListeMaterielConsommable.AddMatConso(tbx_Nom.Text, tbx_CodeBarre.Text);
+            gvMaterielConsommable.DataBind();
             Response.Redirect(Request.RawUrl);
         }
-
-
-
         
-            
-            
+
+
+
+
     }
 }

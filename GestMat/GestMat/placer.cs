@@ -12,21 +12,13 @@ namespace GestMat
     using System;
     using System.Collections.Generic;
     
-    public partial class mat_conso
+    public partial class placer
     {
-        public mat_conso()
-        {
-            this.demande_mat_conso = new HashSet<demande_mat_conso>();
-            this.personnel = new HashSet<personnel>();
-            this.placer = new HashSet<placer>();
-        }
-    
         public int id_mat_conso { get; set; }
-        public string nom { get; set; }
-        public string code_barres { get; set; }
+        public int id_site_de_stockage { get; set; }
+        public int quantite { get; set; }
     
-        public virtual ICollection<demande_mat_conso> demande_mat_conso { get; set; }
-        public virtual ICollection<personnel> personnel { get; set; }
-        public virtual ICollection<placer> placer { get; set; }
+        public virtual mat_conso mat_conso { get; set; }
+        public virtual site_de_stockage site_de_stockage { get; set; }
     }
 }

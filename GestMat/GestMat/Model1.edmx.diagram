@@ -22,7 +22,6 @@
         <AssociationConnector Association="gest_matModel.FK_demande_mat_conso_id_personnel_1" ManuallyRouted="false" />
         <AssociationConnector Association="gest_matModel.FK_demande_mat_conso_id_projet" ManuallyRouted="false" />
         <AssociationConnector Association="gest_matModel.FK_identificateur_id_personnel" ManuallyRouted="false" />
-        <AssociationConnector Association="gest_matModel.FK_mat_conso_id_site_de_stockage" ManuallyRouted="false" />
         <AssociationConnector Association="gest_matModel.FK_mat_non_conso_id_salle" ManuallyRouted="false" />
         <AssociationConnector Association="gest_matModel.FK_rese_mat_non_conso_id_mat_non_conso" ManuallyRouted="false" />
         <AssociationConnector Association="gest_matModel.FK_personnel_projet_id_personnel" ManuallyRouted="false" />
@@ -35,6 +34,9 @@
         <AssociationConnector Association="gest_matModel.appartenir" ManuallyRouted="false" />
         <AssociationConnector Association="gest_matModel.gerer" ManuallyRouted="false" />
         <AssociationConnector Association="gest_matModel.manager" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="gest_matModel.placer" Width="1.5" PointX="7.5" PointY="13" />
+        <AssociationConnector Association="gest_matModel.FK_placer_id_mat_conso" />
+        <AssociationConnector Association="gest_matModel.FK_placer_id_site_de_stockage" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

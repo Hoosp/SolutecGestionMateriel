@@ -1,35 +1,21 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListeMaterielConsommable.aspx.cs" Inherits="GestMat._Default" %>
+<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListeMaterielConsommable.aspx.cs" Inherits="GestMat._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h1>Liste des materiels consommables</h1>
+
         <div>
             <asp:Label ID="lbl_AjouterMatConso" runat="server" Text="Remplir les champs pour ajouter un materiel consommable : "></asp:Label>
         </div>
 
-    
-            <asp:Table ID="Table1" runat="server" Width="345px">
-
-                <asp:TableRow>
-                    <asp:TableCell>
-                        <asp:Label ID="lbl_NomMatConso" runat="server" Text="Nom"></asp:Label>
-                    </asp:TableCell>
-                    <asp:TableCell>
-                        <asp:TextBox ID="tbx_Nom" runat="server"></asp:TextBox>
-                    </asp:TableCell>
-                </asp:TableRow>
-
-                <asp:TableRow>
-                    <asp:TableCell>
-                        <asp:Label ID="lbl_CodeBarre" runat="server" Text="Code barre"></asp:Label>
-                    </asp:TableCell>
-                    <asp:TableCell>
-                        <asp:TextBox ID="tbx_CodeBarre" runat="server"></asp:TextBox>
-                    </asp:TableCell>
-                </asp:TableRow>
-
-            </asp:Table>
-      
+        <div>
+            <asp:Label ID="lbl_NomMatConso" runat="server" Text="Nom"></asp:Label>
+            <asp:TextBox ID="tbx_Nom" runat="server"></asp:TextBox>
+            <asp:Label ID="lbl_CodeBarre" runat="server" Text="Code barre"></asp:Label>
+            <asp:TextBox ID="tbx_CodeBarre" runat="server"></asp:TextBox>
+            <asp:Label ID="lbl_SiteDeStockage" runat="server" Text="Site de stockage"></asp:Label>
+            <asp:DropDownList ID="ddl_SiteStockage" runat="server" DataSourceID="odsSiteStockage" DataTextField="nom" DataValueField="id_site_de_stockage"/>
+           
+        </div>
 
         <div>
             <asp:Button ID="btnAjouterMatConso" runat="server" Text="Ajouter un nouveau materiel consommable" OnClick="BtnAjouterMatConso_Click" />   
@@ -42,12 +28,15 @@
            <asp:GridView ID="gvMaterielConsommable" runat="server" OnRowCommand="BtnGrid" AutoGenerateColumns="False" DataSourceID="odsMaterielConsommable" style="float:left;" CellPadding="4" ForeColor="#333333" GridLines="None" Width="90%">
         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
         <Columns>
-            
-            <asp:HyperLinkField DataNavigateUrlFields="id_mat_conso" DataNavigateUrlFormatString="DetailsMatConso.aspx?idMatConso={0}" DataTextField="id_mat_conso" HeaderText="ID" />
+            <asp:BoundField DataField="id_mat_conso" HeaderText="ID" SortExpression="id_mat_conso" />
             <asp:BoundField DataField="nom" HeaderText="Nom" SortExpression="nom" />
             <asp:BoundField DataField="code_barres" HeaderText="Code barre" SortExpression="code_barres" />
 
-
+           <asp:TemplateField HeaderText="Nom site de stockage">
+                <ItemTemplate>
+                    <asp:Label ID="id_site_de_stockage" runat="server" Text='<%# Eval("site_de_stockage.nom") %>'></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField> 
 
             <asp:TemplateField HeaderText="">
                 <ItemTemplate>
@@ -75,7 +64,8 @@
 
         
         <asp:ObjectDataSource ID="odsMaterielConsommable" runat="server" SelectMethod ="Get" TypeName="GestMat.dto.DtoListeMaterielConsommable" OldValuesParameterFormatString="original_{0}" ></asp:ObjectDataSource>
-       
+        <asp:ObjectDataSource ID="odsSiteStockage" runat="server" SelectMethod ="Get" TypeName="GestMat.dto.DtoListeSiteDeStockage" OldValuesParameterFormatString="original_{0}" ></asp:ObjectDataSource>
+
 
 
 

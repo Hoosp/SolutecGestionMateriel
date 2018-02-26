@@ -37,5 +37,6 @@ namespace GestMat
         public DbSet<site> site { get; set; }
         public DbSet<site_de_stockage> site_de_stockage { get; set; }
         public DbSet<thematique> thematique { get; set; }
+        public DbSet<placer> placer { get; set; }
     }
 }

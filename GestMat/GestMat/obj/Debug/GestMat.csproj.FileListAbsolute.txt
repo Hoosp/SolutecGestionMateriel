@@ -120,7 +120,7 @@ Z:\GitHub\SolutecGestionMateriel\GestMat\GestMat\bin\Devart.Data.xml
 Z:\GitHub\SolutecGestionMateriel\GestMat\GestMat\bin\fr\EntityFramework.resources.dll
 Z:\GitHub\SolutecGestionMateriel\GestMat\GestMat\bin\fr\System.Web.Optimization.resources.dll
 Z:\GitHub\SolutecGestionMateriel\GestMat\GestMat\bin\fr\Microsoft.AspNet.FriendlyUrls.resources.dll
-Z:\GitHub\SolutecGestionMateriel\GestMat\GestMat\obj\Debug\GestMat.csprojResolveAssemblyReference.cache
 Z:\GitHub\SolutecGestionMateriel\GestMat\GestMat\obj\Debug\GestMat.csproj.CoreCompileInputs.cache
 Z:\GitHub\SolutecGestionMateriel\GestMat\GestMat\obj\Debug\GestMat.dll
 Z:\GitHub\SolutecGestionMateriel\GestMat\GestMat\obj\Debug\GestMat.pdb
+Z:\GitHub\SolutecGestionMateriel\GestMat\GestMat\obj\Debug\GestMat.csprojResolveAssemblyReference.cache

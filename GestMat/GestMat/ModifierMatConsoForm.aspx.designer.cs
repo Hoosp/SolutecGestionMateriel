@@ -10,16 +10,16 @@
 namespace GestMat {
     
     
-    public partial class ListeMaterielNonConsommable {
+    public partial class ModifierMatConsoForm {
         
         /// <summary>
-        /// Contrôle lbl_AjouterMatNonConso.
+        /// Contrôle form1.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_AjouterMatNonConso;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
         /// Contrôle Table1.
@@ -31,93 +31,75 @@ namespace GestMat {
         protected global::System.Web.UI.WebControls.Table Table1;
         
         /// <summary>
-        /// Contrôle lbl_NomMatNonConso.
+        /// Contrôle lbl_idMatConso.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_NomMatNonConso;
+        protected global::System.Web.UI.WebControls.Label lbl_idMatConso;
         
         /// <summary>
-        /// Contrôle tbx_Nom.
+        /// Contrôle tbx_idMatConso.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbx_Nom;
+        protected global::System.Web.UI.WebControls.TextBox tbx_idMatConso;
         
         /// <summary>
-        /// Contrôle lbl_etat.
+        /// Contrôle lbl_NomMatConso.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_etat;
+        protected global::System.Web.UI.WebControls.Label lbl_NomMatConso;
         
         /// <summary>
-        /// Contrôle ddl_Etat.
+        /// Contrôle tbx_NomMatConso.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_Etat;
+        protected global::System.Web.UI.WebControls.TextBox tbx_NomMatConso;
         
         /// <summary>
-        /// Contrôle lbl_Salle.
+        /// Contrôle lbl_CodeBarreMatConso.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Salle;
+        protected global::System.Web.UI.WebControls.Label lbl_CodeBarreMatConso;
         
         /// <summary>
-        /// Contrôle ddl_Salle.
+        /// Contrôle tbx_CodeBarreMatConso.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_Salle;
+        protected global::System.Web.UI.WebControls.TextBox tbx_CodeBarreMatConso;
         
         /// <summary>
-        /// Contrôle btnAjouterMatNonConso.
+        /// Contrôle btn_OKModifierMatConso.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAjouterMatNonConso;
+        protected global::System.Web.UI.WebControls.Button btn_OKModifierMatConso;
         
         /// <summary>
-        /// Contrôle gvMaterielNonConsommable.
+        /// Contrôle btn_AnnulerModifierMatConso.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvMaterielNonConsommable;
-        
-        /// <summary>
-        /// Contrôle odsMaterielNonConsommable.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource odsMaterielNonConsommable;
-        
-        /// <summary>
-        /// Contrôle odsSalle.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource odsSalle;
+        protected global::System.Web.UI.WebControls.Button btn_AnnulerModifierMatConso;
     }
 }

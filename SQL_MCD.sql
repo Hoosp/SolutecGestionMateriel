@@ -8,10 +8,9 @@
 #------------------------------------------------------------
 
 CREATE TABLE mat_conso(
-        id_mat_conso        int (11) Auto_increment  NOT NULL ,
-        nom                 Varchar (25) ,
-        code_barres         Varchar (25) ,
-        id_site_de_stockage Int NOT NULL ,
+        id_mat_conso int (11) Auto_increment  NOT NULL ,
+        nom          Varchar (25) ,
+        code_barres  Varchar (25) ,
         PRIMARY KEY (id_mat_conso )
 )ENGINE=InnoDB;
 
@@ -188,6 +187,18 @@ CREATE TABLE appartenir(
 
 
 #------------------------------------------------------------
+# Table: placer
+#------------------------------------------------------------
+
+CREATE TABLE placer(
+        quantite            Int NOT NULL ,
+        id_site_de_stockage Int NOT NULL ,
+        id_mat_conso        Int NOT NULL ,
+        PRIMARY KEY (id_site_de_stockage ,id_mat_conso )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
 # Table: gerer
 #------------------------------------------------------------
 
@@ -208,7 +219,6 @@ CREATE TABLE manager(
         PRIMARY KEY (id_personnel ,id_mat_conso )
 )ENGINE=InnoDB;
 
-ALTER TABLE mat_conso ADD CONSTRAINT FK_mat_conso_id_site_de_stockage FOREIGN KEY (id_site_de_stockage) REFERENCES site_de_stockage(id_site_de_stockage);
 ALTER TABLE site_de_stockage ADD CONSTRAINT FK_site_de_stockage_id_site FOREIGN KEY (id_site) REFERENCES site(id_site);
 ALTER TABLE mat_non_conso ADD CONSTRAINT FK_mat_non_conso_id_salle FOREIGN KEY (id_salle) REFERENCES salle(id_salle);
 ALTER TABLE rese_mat_non_conso ADD CONSTRAINT FK_rese_mat_non_conso_id_personnel FOREIGN KEY (id_personnel) REFERENCES personnel(id_personnel);
@@ -225,6 +235,8 @@ ALTER TABLE personnel_projet ADD CONSTRAINT FK_personnel_projet_id_projet FOREIG
 ALTER TABLE personnel_projet ADD CONSTRAINT FK_personnel_projet_id_personnel FOREIGN KEY (id_personnel) REFERENCES personnel(id_personnel);
 ALTER TABLE appartenir ADD CONSTRAINT FK_appartenir_id_thematique FOREIGN KEY (id_thematique) REFERENCES thematique(id_thematique);
 ALTER TABLE appartenir ADD CONSTRAINT FK_appartenir_id_projet FOREIGN KEY (id_projet) REFERENCES projet(id_projet);
+ALTER TABLE placer ADD CONSTRAINT FK_placer_id_site_de_stockage FOREIGN KEY (id_site_de_stockage) REFERENCES site_de_stockage(id_site_de_stockage);
+ALTER TABLE placer ADD CONSTRAINT FK_placer_id_mat_conso FOREIGN KEY (id_mat_conso) REFERENCES mat_conso(id_mat_conso);
 ALTER TABLE gerer ADD CONSTRAINT FK_gerer_id_personnel FOREIGN KEY (id_personnel) REFERENCES personnel(id_personnel);
 ALTER TABLE gerer ADD CONSTRAINT FK_gerer_id_mat_non_conso FOREIGN KEY (id_mat_non_conso) REFERENCES mat_non_conso(id_mat_non_conso);
 ALTER TABLE manager ADD CONSTRAINT FK_manager_id_personnel FOREIGN KEY (id_personnel) REFERENCES personnel(id_personnel);
