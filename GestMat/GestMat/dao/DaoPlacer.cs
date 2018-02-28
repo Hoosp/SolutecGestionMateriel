@@ -8,9 +8,9 @@ namespace GestMat.dao
     public class DaoPlacer : Dao
     {
 
-        public static placer Get(int idMatConso)
+        public static IEnumerable<placer> Get(int idMatConso)
         {
-            return ctxt.placer.SingleOrDefault(cs => cs.id_mat_conso == idMatConso);
+            return ctxt.placer.Where(cs => cs.id_mat_conso == idMatConso).ToList();
         }
 
     }

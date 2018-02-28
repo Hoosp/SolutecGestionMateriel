@@ -4,9 +4,9 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
                     <h1> 
-                        <asp:Label ID="idMatConso" runat="server"></asp:Label>
+                        <asp:Label id="id_MatConso" runat="server"></asp:Label>
                         :
-                        <asp:Label ID="NomMatConso" runat="server"></asp:Label>
+                        <asp:Label id="Nom_MatConso" runat="server"></asp:Label>
 
 
                     </h1>
@@ -15,33 +15,9 @@
            <asp:GridView ID="gvMaterielConsommableDetail" runat="server"  AutoGenerateColumns="False" DataSourceID="odsPlacer" style="float:left;" CellPadding="4" ForeColor="#333333" GridLines="None" Width="90%">
         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
         <Columns>
-
-           <asp:TemplateField HeaderText="Nom du stite de stockage">
-                <ItemTemplate>
-                    <asp:Label ID="id_salle" runat="server" Text='<%# Eval("placer.id_site_de_stockage") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField> 
-
-            <asp:TemplateField HeaderText="Quantité disponible">
-                <ItemTemplate>
-                    <asp:Label ID="etat" runat="server" Text='<%# Eval("placer.quantite") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField> 
-
-
-            <asp:TemplateField HeaderText="">
-                <ItemTemplate>
-                     <asp:Button ID="btnModifier" runat="server" Text="Modifier" CommandName="ModifierMatConso" CommandArgument='<%# Eval("id_site_de_stockage") %>'></asp:Button>
-               </ItemTemplate>
-            </asp:TemplateField>
-
-            <asp:TemplateField HeaderText="">
-                <ItemTemplate>
-                     <asp:Button ID="btnSupprimer" runat="server" Text="Supprimer" CommandName="SupprimerMatConso" CommandArgument='<%# Eval("id_site_de_stockage") %>' ></asp:Button>
-               </ItemTemplate>
-            </asp:TemplateField>
-
-
+            <asp:BoundField DataField="id_site_de_stockage" HeaderText="ID" SortExpression="id_site_de_stockage" />
+            <asp:BoundField DataField="site_de_stockage.nom" HeaderText="Site de stockage" SortExpression="id_site_de_stockage" />
+            <asp:BoundField DataField="quantite" HeaderText="quantite" SortExpression="quantite" />
         </Columns>
         <EditRowStyle BackColor="#999999" />
         <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -56,6 +32,10 @@
     </asp:GridView>
 
         
-        <asp:ObjectDataSource ID="odsPlacer" runat="server" SelectMethod ="Get(id_mat_conso)" TypeName="GestMat.dto.DtoPlacer" OldValuesParameterFormatString="original_{0}" ></asp:ObjectDataSource>
+        <asp:ObjectDataSource ID="odsPlacer" runat="server" SelectMethod ="Get" TypeName="GestMat.dto.DtoPlacer" OldValuesParameterFormatString="original_{0}" >
+            <SelectParameters>
+                <asp:QueryStringParameter DefaultValue="-1" Name="idMatConso" QueryStringField="idMatConso" Type="Int32" />
+            </SelectParameters>
+                    </asp:ObjectDataSource>
 
 </asp:Content>

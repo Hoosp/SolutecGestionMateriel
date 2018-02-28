@@ -11,8 +11,21 @@ namespace GestMat
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            int idMatConso = Convert.ToInt32(Request.QueryString["idMatConso"]);
-            int i = 0;
+            try
+            {
+                int idMatConso = Convert.ToInt32(Request.QueryString["idMatConso"]);
+                mat_conso matConso = dto.DtoListeMaterielConsommable.Get(idMatConso);
+                id_MatConso.Text = matConso.id_mat_conso.ToString();
+                Nom_MatConso.Text = matConso.nom;
+            }
+            catch
+            {
+                id_MatConso.Text = Request.QueryString["idMatConso"];
+                Nom_MatConso.Text = "ID non valide";
+            }
+
+
+            
 
         }
 

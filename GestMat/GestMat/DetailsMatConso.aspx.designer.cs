@@ -13,22 +13,22 @@ namespace GestMat {
     public partial class DetailsMatConso {
         
         /// <summary>
-        /// Contrôle idMatConso.
+        /// Contrôle id_MatConso.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label idMatConso;
+        protected global::System.Web.UI.WebControls.Label id_MatConso;
         
         /// <summary>
-        /// Contrôle NomMatConso.
+        /// Contrôle Nom_MatConso.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label NomMatConso;
+        protected global::System.Web.UI.WebControls.Label Nom_MatConso;
         
         /// <summary>
         /// Contrôle gvMaterielConsommableDetail.

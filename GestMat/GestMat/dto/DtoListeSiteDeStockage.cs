@@ -11,5 +11,6 @@ namespace GestMat.dto
         {
             return dao.DaoListeSiteDeStockage.Get();
         }
+        
     }
 }
