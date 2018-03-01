@@ -23,13 +23,8 @@ namespace GestMat
                 id_MatConso.Text = Request.QueryString["idMatConso"];
                 Nom_MatConso.Text = "ID non valide";
             }
-
-
             
-
         }
-
-
-
+        
     }
 }

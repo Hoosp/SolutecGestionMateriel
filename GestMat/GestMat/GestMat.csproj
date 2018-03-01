@@ -146,6 +146,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="DetailsMatConso.aspx" />
+    <Content Include="FormulairDemandesConsommables.aspx" />
     <Content Include="ListeMaterielConsommable.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -219,12 +220,14 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="dao\DaoDemandeMatConso.cs" />
     <Compile Include="dao\DaoListeMaterielNonConsommable.cs" />
     <Compile Include="dao\DaoListeSalle.cs" />
     <Compile Include="dao\DaoListeSiteDeStockage.cs" />
     <Compile Include="dao\DaoModifierMatConsoForm.cs" />
     <Compile Include="dao\DaoModifierMatNonConsoForm.cs" />
     <Compile Include="dao\DaoPlacer.cs" />
+    <Compile Include="dao\DaoSiteDeStockage.cs" />
     <Compile Include="DetailsMatConso.aspx.cs">
       <DependentUpon>DetailsMatConso.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -232,6 +235,7 @@
     <Compile Include="DetailsMatConso.aspx.designer.cs">
       <DependentUpon>DetailsMatConso.aspx</DependentUpon>
     </Compile>
+    <Compile Include="dto\DtoDemandeMatConso.cs" />
     <Compile Include="dto\DtoListeMaterielNonConsommable.cs" />
     <Compile Include="dto\DtoListeSalle.cs" />
     <Compile Include="dto\DtoListeSiteDeStockage.cs" />
@@ -240,6 +244,14 @@
     <Compile Include="dao\DaoListeMaterielConsommable.cs" />
     <Compile Include="dto\DtoModifierMatNonConsoForm.cs" />
     <Compile Include="dto\DtoPlacer.cs" />
+    <Compile Include="dto\DtoSiteDeStockage.cs" />
+    <Compile Include="FormulairDemandesConsommables.aspx.cs">
+      <DependentUpon>FormulairDemandesConsommables.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormulairDemandesConsommables.aspx.designer.cs">
+      <DependentUpon>FormulairDemandesConsommables.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ListeMaterielConsommable.aspx.cs">
       <DependentUpon>ListeMaterielConsommable.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

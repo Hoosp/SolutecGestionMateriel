@@ -18,6 +18,19 @@ textarea {
     max-width: 280px;
 }
 
+.errorzone {
+    background-color: red;
+    height: 30px;
+    font-weight: 700;
+    padding-inline-start: 15%;
+}
+
+.messagezone {
+    background-color: lawngreen;
+    height: 30px;
+    font-weight: 700;
+    padding-inline-start: 15%;
+}
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {

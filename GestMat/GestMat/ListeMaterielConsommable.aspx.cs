@@ -19,9 +19,10 @@ namespace GestMat
 
             //int index = e.CommandArgument;
 
-            if(e.CommandName == "SupprimerMatConso")
+            int idMatConso = Convert.ToInt32(e.CommandArgument);
+
+            if (e.CommandName == "SupprimerMatConso")
             {
-                int idMatConso = Convert.ToInt32(e.CommandArgument);
 
                 dto.DtoListeMaterielConsommable.SuppMatConso(idMatConso);
                 gvMaterielConsommable.DataBind();
@@ -31,10 +32,8 @@ namespace GestMat
 
             //System.Diagnostics.Debug.WriteLine("Yo");
             
-            if (e.CommandName == "ModifierMatConso")
+           else if (e.CommandName == "ModifierMatConso")
             {
-                int idMatConso = Convert.ToInt32(e.CommandArgument);
-
                 mat_conso matConso = dto.DtoListeMaterielConsommable.Get(idMatConso);
 
                 //Response.Redirect(string.Format("~/ModifierMatConsoForm?matConso={0}", matCons));
@@ -42,9 +41,12 @@ namespace GestMat
                 Session["matConso"] = matConso;  // saves to session
                 Response.Redirect("~/ModifierMatConsoForm.aspx");
             }
-            
-                
-            
+
+            else if (e.CommandName == "DemanderMatConso")
+            {
+                Response.Redirect(string.Format("~/FormulairDemandesConsommables.aspx?id_mat_conso={0}", idMatConso));
+            }
+
 
         }
 

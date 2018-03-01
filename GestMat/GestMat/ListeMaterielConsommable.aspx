@@ -60,6 +60,13 @@
                      <asp:Button ID="btnSupprimer" runat="server" Text="Supprimer" CommandName="SupprimerMatConso" CommandArgument='<%# Eval("id_mat_conso") %>' ></asp:Button>
                </ItemTemplate>
             </asp:TemplateField>
+
+            <asp:TemplateField HeaderText="">
+                <ItemTemplate>
+                     <asp:Button ID="btnDemander" runat="server" Text="Demander" CommandName="DemanderMatConso" CommandArgument='<%# Eval("id_mat_conso") %>' ></asp:Button>
+               </ItemTemplate>
+            </asp:TemplateField>
+
         </Columns>
         <EditRowStyle BackColor="#999999" />
         <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

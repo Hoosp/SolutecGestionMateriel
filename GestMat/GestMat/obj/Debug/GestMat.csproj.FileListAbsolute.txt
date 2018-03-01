@@ -178,7 +178,7 @@ Z:\SoluGestMat\SolutecGestionMateriel\GestMat\GestMat\bin\Microsoft.AI.Web.xml
 Z:\SoluGestMat\SolutecGestionMateriel\GestMat\GestMat\bin\fr\EntityFramework.resources.dll
 Z:\SoluGestMat\SolutecGestionMateriel\GestMat\GestMat\bin\fr\System.Web.Optimization.resources.dll
 Z:\SoluGestMat\SolutecGestionMateriel\GestMat\GestMat\bin\fr\Microsoft.AspNet.FriendlyUrls.resources.dll
-Z:\SoluGestMat\SolutecGestionMateriel\GestMat\GestMat\obj\Debug\GestMat.csprojResolveAssemblyReference.cache
 Z:\SoluGestMat\SolutecGestionMateriel\GestMat\GestMat\obj\Debug\GestMat.csproj.CoreCompileInputs.cache
 Z:\SoluGestMat\SolutecGestionMateriel\GestMat\GestMat\obj\Debug\GestMat.dll
 Z:\SoluGestMat\SolutecGestionMateriel\GestMat\GestMat\obj\Debug\GestMat.pdb
+Z:\SoluGestMat\SolutecGestionMateriel\GestMat\GestMat\obj\Debug\GestMat.csprojResolveAssemblyReference.cache

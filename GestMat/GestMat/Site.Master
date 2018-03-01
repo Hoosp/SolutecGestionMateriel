@@ -40,6 +40,10 @@
             </Scripts>
         </asp:ScriptManager>
 
+        <asp:Panel ID="pnlMessage" runat="server" Visible="False">
+            <asp:Label ID="lblMessage" runat="server" Visible="False"></asp:Label>
+        </asp:Panel>
+
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">

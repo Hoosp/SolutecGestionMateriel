@@ -9,22 +9,6 @@
 </head>
 <body>
     <form id="form1" runat="server" >
-        <div>
-
-            
-
-        </div>
-        
-        
-        <p>
-            
-            
-        </p>
-        
-
-        <p>
-
-        </p>
         <asp:Table ID="Table1" runat="server" Width="345px">
 
             <asp:TableRow>
@@ -54,8 +38,6 @@
                 </asp:TableCell>
             </asp:TableRow>
 
-
-
             <asp:TableRow>
             <asp:TableCell>
                 <asp:Button ID="btn_OKModifierMatConso" runat="server" Text="Valider" OnClick="Btn_OKModifierMatConso_Click" />
@@ -67,7 +49,6 @@
                 </asp:TableCell>
             </asp:TableRow>
   
-
         </asp:Table>
     </form>
      
