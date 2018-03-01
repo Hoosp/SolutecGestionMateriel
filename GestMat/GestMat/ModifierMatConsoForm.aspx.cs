@@ -13,7 +13,7 @@ namespace GestMat
         {
             mat_conso matConso = (mat_conso) Session["matConso"];
 
-            System.Diagnostics.Debug.WriteLine(matConso.nom);
+            //System.Diagnostics.Debug.WriteLine(matConso.nom);
 
 
             if (!Page.IsPostBack)
@@ -45,12 +45,12 @@ namespace GestMat
         {
 
             dto.DtoModifierMatConsoForm.UpdateMatConso(Convert.ToInt32(tbx_idMatConso.Text), tbx_NomMatConso.Text, tbx_CodeBarreMatConso.Text);
-            Response.Redirect("~/ListeMaterielConsommable.aspx");
+            Response.Redirect("~/ListeMaterielConsommable?idMatConso={0}.aspx");
         }
 
         protected void Btn_AnnulerModifierMatConso_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/ListeMaterielConsommable.aspx"); 
+            Response.Redirect("~/ListeMaterielConsommable?idMatConso={0}.aspx"); 
         }
 
 
