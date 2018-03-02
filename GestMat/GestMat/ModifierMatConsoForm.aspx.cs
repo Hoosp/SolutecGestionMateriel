@@ -13,7 +13,7 @@ namespace GestMat
         {
             mat_conso matConso = (mat_conso) Session["matConso"];
 
-            System.Diagnostics.Debug.WriteLine(matConso.nom);
+            //System.Diagnostics.Debug.WriteLine(matConso.nom);
 
 
             if (!Page.IsPostBack)

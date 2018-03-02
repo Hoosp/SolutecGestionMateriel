@@ -142,6 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="AjouterSdSAMatConso.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -174,8 +175,10 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="ModifierDetailsMatConsoForm.aspx" />
     <Content Include="ModifierMatConsoForm.aspx" />
     <Content Include="ModifierMatNonConsoForm.aspx" />
+    <Content Include="Scripts\ajouterUnSiteDeStockageAMatConso.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -211,6 +214,13 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AjouterSdSAMatConso.aspx.cs">
+      <DependentUpon>AjouterSdSAMatConso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AjouterSdSAMatConso.aspx.designer.cs">
+      <DependentUpon>AjouterSdSAMatConso.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -296,6 +306,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ModifierDetailsMatConsoForm.aspx.cs">
+      <DependentUpon>ModifierDetailsMatConsoForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModifierDetailsMatConsoForm.aspx.designer.cs">
+      <DependentUpon>ModifierDetailsMatConsoForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="ModifierMatConsoForm.aspx.cs">
       <DependentUpon>ModifierMatConsoForm.aspx</DependentUpon>

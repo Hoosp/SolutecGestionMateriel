@@ -31,6 +31,33 @@ namespace GestMat {
         protected global::System.Web.UI.WebControls.Label Nom_MatConso;
         
         /// <summary>
+        /// Contrôle idSdS.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList idSdS;
+        
+        /// <summary>
+        /// Contrôle qte.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox qte;
+        
+        /// <summary>
+        /// Contrôle btnAjouterSdSAMatConso.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAjouterSdSAMatConso;
+        
+        /// <summary>
         /// Contrôle gvMaterielConsommableDetail.
         /// </summary>
         /// <remarks>
@@ -38,6 +65,15 @@ namespace GestMat {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvMaterielConsommableDetail;
+        
+        /// <summary>
+        /// Contrôle odsSdS.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource odsSdS;
         
         /// <summary>
         /// Contrôle odsPlacer.
