@@ -29,7 +29,7 @@ namespace GestMat
                     tbx_idMatConso.Enabled = false;
                     tbx_NomMatConso.Text = placer.mat_conso.nom;
                     tbx_NomMatConso.Enabled = false;
-                    ddl_nomSdS.SelectedItem = placer.site_de_stockage.nom;
+                    ddl_nomSdS.SelectedIteml = placer.site_de_stockage.nom;
                     tbx_Qte.Text = placer.quantite.ToString();
 
 
